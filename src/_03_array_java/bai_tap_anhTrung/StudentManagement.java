@@ -5,9 +5,10 @@ import java.util.Scanner;
 
 public class StudentManagement {
     private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
         System.out.println("----------Chương trình quản lý sinh viên----------");
-        String[] students = new String[50];
+        Student[] students = new Student[50];
         while (true) {
             System.out.println("Menu chương trình");
             System.out.println("1. Xem danh sách sinh viên");
@@ -26,12 +27,12 @@ public class StudentManagement {
                     break;
                 case 3:
                     System.out.println("Nhập tên sinh viên muốn sửa: ");
-                    String editStudent = scanner.nextLine();
-                    for (int i =0;i<students.length;i++){
-                        if (students[i].equals(editStudent)){
-                            students[i]=scanner.nextLine();
-                        }
-                    }
+//                    String editStudent = scanner.nextLine();
+//                    for (int i =0;i<students.length;i++){
+//                        if (students[i].equals(editStudent)){
+//                            students[i]=scanner.nextLine();
+//                        }
+//                    }
                     break;
                 case 4:
                     createNewStudent(students);
@@ -44,16 +45,17 @@ public class StudentManagement {
             }
         }
     }
-    private static void displayStudent(String[] students) {
-        for (String student : students) {
+
+    private static void displayStudent(Student[] students) {
+        for (Student student : students) {
             if (student != null) {
                 System.out.println(student);
             }
         }
     }
 
-    private static void deleteStudent(String[] students){
-        String deleteStudent =  inputOutput("Nhập tên sinh viên muốn xoá");
+    private static void deleteStudent(Student[] students) {
+        String deleteStudent = inputOutput("Nhập tên sinh viên muốn xoá");
         for (int i = 0; i < students.length; i++) {
             if (deleteStudent.equals(students[i])) {
                 students[i] = null;
@@ -61,8 +63,16 @@ public class StudentManagement {
         }
     }
 
-    private static void createNewStudent(String[] students){
-        String newStudent = inputOutput("Mời bạn nhập tên sinh viên mới: ");
+    private static void createNewStudent(Student[] students) {
+        System.out.println("Mời bạn nhập id sinh viên mới: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        System.out.println("Mời bạn nhập tên sinh viên mới: ");
+        String name = scanner.nextLine();
+        System.out.println("Mời bạn nhập tuổi sinh viên mới:");
+        int age = Integer.parseInt(scanner.nextLine());
+        System.out.println("Mời bạn nhập địa chỉ sinh viên mới: ");
+        String address = scanner.nextLine();
+        Student newStudent = new Student(id, name,age,address);
         for (int i = 0; i < students.length; i++) {
             if (students[i] == null) {
                 students[i] = newStudent;
@@ -71,7 +81,7 @@ public class StudentManagement {
         }
     }
 
-    private static String inputOutput(String message){
+    private static String inputOutput(String message) {
         System.out.println(message);
         String output = scanner.nextLine();
         return output;

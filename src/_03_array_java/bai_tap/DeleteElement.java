@@ -16,7 +16,7 @@ public class DeleteElement {
             System.out.print("Nhập phần tử thứ " + i + ": ");
             arr[i] = scanner.nextInt();
         }
-        System.out.print("Nhập số nguyên k: ");
+        System.out.print("Nhập số cần xoá: ");
         int k = scanner.nextInt();
 
         for (c = i = 0; i < n; i++) {
