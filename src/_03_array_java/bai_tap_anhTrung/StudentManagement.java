@@ -2,9 +2,10 @@ package _03_array_java.bai_tap_anhTrung;
 
 import java.util.Scanner;
 
+
 public class StudentManagement {
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("----------Chương trình quản lý sinh viên----------");
         String[] students = new String[50];
         while (true) {
@@ -18,20 +19,10 @@ public class StudentManagement {
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
                 case 1:
-                    for (String student : students) {
-                        if (student != null) {
-                            System.out.println(student);
-                        }
-                    }
+                    displayStudent(students);
                     break;
                 case 2:
-                    System.out.println("Nhập tên sinh viên muốn xoá");
-                    String deleteStudent = scanner.nextLine();
-                    for (int i = 0; i < students.length; i++) {
-                        if (deleteStudent.equals(students[i])) {
-                            students[i] = null;
-                        }
-                    }
+                    deleteStudent(students);
                     break;
                 case 3:
                     System.out.println("Nhập tên sinh viên muốn sửa: ");
@@ -43,14 +34,7 @@ public class StudentManagement {
                     }
                     break;
                 case 4:
-                    System.out.println("Mời bạn nhập tên sinh viên mới: ");
-                    String newStudent = scanner.nextLine();
-                    for (int i = 0; i < students.length; i++) {
-                        if (students[i] == null) {
-                            students[i] = newStudent;
-                            break;
-                        }
-                    }
+                    createNewStudent(students);
                     break;
                 case 5:
                     System.exit(1);
@@ -60,4 +44,37 @@ public class StudentManagement {
             }
         }
     }
+    private static void displayStudent(String[] students) {
+        for (String student : students) {
+            if (student != null) {
+                System.out.println(student);
+            }
+        }
+    }
+
+    private static void deleteStudent(String[] students){
+        String deleteStudent =  inputOutput("Nhập tên sinh viên muốn xoá");
+        for (int i = 0; i < students.length; i++) {
+            if (deleteStudent.equals(students[i])) {
+                students[i] = null;
+            }
+        }
+    }
+
+    private static void createNewStudent(String[] students){
+        String newStudent = inputOutput("Mời bạn nhập tên sinh viên mới: ");
+        for (int i = 0; i < students.length; i++) {
+            if (students[i] == null) {
+                students[i] = newStudent;
+                break;
+            }
+        }
+    }
+
+    private static String inputOutput(String message){
+        System.out.println(message);
+        String output = scanner.nextLine();
+        return output;
+    }
+
 }
