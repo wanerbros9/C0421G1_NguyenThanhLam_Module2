@@ -7,7 +7,7 @@ public class DeleteElement {
         int n, c, i;
         Scanner scanner = new Scanner(System.in);
         do {
-            System.out.print("Nhập vào số phần tử của mảng");
+            System.out.print("Nhập vào số phần tử của mảng: ");
             n = scanner.nextInt();
         } while (n <= 0);
         int arr[] = new int[n];

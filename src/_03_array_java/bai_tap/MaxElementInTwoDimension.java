@@ -10,8 +10,20 @@ public class MaxElementInTwoDimension {
         System.out.println("Input col: ");
         int col = scanner.nextInt();
         int[][] arr = new int[row][col];
-//        for (i=0;i<row;i++){
-
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                System.out.println("Input element at [" + i + "][" + j + "]: ");
+                arr[i][j] = scanner.nextInt();
+            }
         }
+        int max = arr[0][0];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                if (arr[i][j]>max){
+                    max = arr[i][j];
+                }
+            }
+        }
+        System.out.println("Max number is: "+max);
     }
-//}
+}
