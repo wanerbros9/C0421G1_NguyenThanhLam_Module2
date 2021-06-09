@@ -42,9 +42,11 @@ public class Point2D {
 
     @Override
     public String toString() {
-        return "Point2D{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "Point2D "+ Arrays.toString(getXY());
+    }
+
+    public static void main(String[] args) {
+        Point2D point2D = new Point2D(2,4);
+        System.out.println(point2D);
     }
 }

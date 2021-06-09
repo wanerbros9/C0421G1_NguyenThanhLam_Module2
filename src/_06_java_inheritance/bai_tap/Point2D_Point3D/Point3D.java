@@ -1,5 +1,7 @@
 package _06_java_inheritance.bai_tap.Point2D_Point3D;
 
+import java.util.Arrays;
+
 public class Point3D extends Point2D{
     private float z;
 
@@ -30,5 +32,13 @@ public class Point3D extends Point2D{
         return array;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Point3D " + Arrays.toString(getXYZ());
+    }
+
+    public static void main(String[] args) {
+        Point3D point3D = new Point3D(4,6,1);
+        System.out.println(point3D);
+    }
 }
