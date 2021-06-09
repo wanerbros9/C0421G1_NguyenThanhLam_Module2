@@ -5,6 +5,6 @@ public class TestStudent {
         Student student = new Student();
         student.setName("Lâm");
         student.setClasses("16ES");
-        System.out.println(student.toString());
+        System.out.println(student);
     }
 }
