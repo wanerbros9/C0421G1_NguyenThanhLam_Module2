@@ -42,13 +42,13 @@ public class MovablePoint extends Point {
     }
 
     public float[] getSpeed() {
-        float[] array = {this.xSpeed, getYSpeed()};
+        float[] array = {getXSpeed(), getYSpeed()};
         return array;
     }
 
     public MovablePoint move() {
-        this.setX(this.getX() + this.getXSpeed());
-        this.setY(this.getY() + this.getYSpeed());
+        super.setX(super.getX() + this.getXSpeed());
+        super.setY(super.getY() + this.getYSpeed());
         return this;
     }
 
