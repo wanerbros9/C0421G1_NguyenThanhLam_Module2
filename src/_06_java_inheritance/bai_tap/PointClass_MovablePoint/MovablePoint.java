@@ -1,5 +1,7 @@
 package _06_java_inheritance.bai_tap.PointClass_MovablePoint;
 
+import java.util.Arrays;
+
 public class MovablePoint extends Point {
     private float xSpeed = 0.0f;
     private float ySpeed = 0.0f;
@@ -39,22 +41,30 @@ public class MovablePoint extends Point {
         this.ySpeed = ySpeed;
     }
 
-    public float[] getSpeed(){
-        float[] array = {this.xSpeed,getYSpeed()};
+    public float[] getSpeed() {
+        float[] array = {this.xSpeed, getYSpeed()};
         return array;
+    }
+
+    public MovablePoint move() {
+        this.setX(this.getX() + this.getXSpeed());
+        this.setY(this.getY() + this.getYSpeed());
+        return this;
     }
 
     @Override
     public String toString() {
         return "MovablePoint{" +
-                "xSpeed=" + xSpeed +
-                ", ySpeed=" + ySpeed +
+                "x=" + getX() +
+                ", y=" + getY() +
+                ", Speed = " + Arrays.toString(getSpeed()) +
                 '}';
     }
 
-    public MovablePoint move(){
-        this.setX(this.getX()+this.getXSpeed());
-        this.setY(this.getY()+this.getYSpeed());
-        return this;
+    public static void main(String[] args) {
+        MovablePoint movablePoint = new MovablePoint(7, 8, 6, 4);
+        System.out.println(movablePoint);
+        movablePoint.move();
+        System.out.println(movablePoint);
     }
 }
