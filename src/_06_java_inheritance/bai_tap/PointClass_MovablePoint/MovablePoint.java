@@ -52,7 +52,7 @@ public class MovablePoint extends Point {
                 '}';
     }
 
-    public Point move(){
+    public MovablePoint move(){
         this.setX(this.getX()+this.getXSpeed());
         this.setY(this.getY()+this.getYSpeed());
         return this;

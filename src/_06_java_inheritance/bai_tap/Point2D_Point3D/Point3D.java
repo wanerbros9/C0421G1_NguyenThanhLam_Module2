@@ -22,8 +22,8 @@ public class Point3D extends Point2D{
     }
 
     public void setXYZ(float x, float y, float z){
-        super.getX();
-        super.getY();
+        super.setX(x);
+        super.setY(y);
         this.z = z;
     }
 
@@ -39,6 +39,8 @@ public class Point3D extends Point2D{
 
     public static void main(String[] args) {
         Point3D point3D = new Point3D(4,6,1);
+//        System.out.println(point3D);
+        point3D.setXYZ(6,5,7);
         System.out.println(point3D);
     }
 }
