@@ -1,8 +1,6 @@
 package _07_abstract_interface.bai_tap.colorable;
 
-import _07_abstract_interface.bai_tap.resizeable.Resizeable;
-
-public class Shape implements Resizeable {
+public class Shape implements Colorable {
     private String color = "green";
     private boolean filled = true;
 
@@ -39,7 +37,7 @@ public class Shape implements Resizeable {
     }
 
     @Override
-    public void resize(double percent) {
+    public void howToColor() {
 
     }
 }
