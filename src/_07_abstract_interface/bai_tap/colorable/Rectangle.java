@@ -1,4 +1,7 @@
-package _07_abstract_interface.bai_tap.resizeable;
+package _07_abstract_interface.bai_tap.colorable;
+
+import _07_abstract_interface.bai_tap.resizeable.Resizeable;
+import _07_abstract_interface.bai_tap.resizeable.Shape;
 
 public class Rectangle extends Shape implements Resizeable {
     private double width = 1.0;
@@ -54,7 +57,6 @@ public class Rectangle extends Shape implements Resizeable {
 
     @Override
     public void resize(double percent) {
-        setWidth(getWidth() * percent);
-        setLength(getLength() * percent);
+
     }
 }
