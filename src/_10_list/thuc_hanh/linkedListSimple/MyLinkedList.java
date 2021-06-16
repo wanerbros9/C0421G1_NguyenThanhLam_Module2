@@ -1,7 +1,5 @@
 package _10_list.thuc_hanh.linkedListSimple;
 
-import javax.xml.soap.Node;
-
 public class MyLinkedList {
     private Node head;
     private int numNodes;
