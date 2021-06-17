@@ -1,6 +1,6 @@
 package _10_list.bai_tap.LinkedList;
 
-public class Test {
+public class TestMyLinkedList {
     public static void main(String[] args) {
         class Student {
             private int id;
@@ -35,6 +35,7 @@ public class Test {
         Student student2 = new Student(2, "Hai");
         Student student3 = new Student(3, "Kien");
         Student student4 = new Student(4, "Duc");
+        Student student5 = new Student(5, "Lam");
 
         myLinkedList.addFirst(student1);
         myLinkedList.addFirst(student2);
@@ -44,7 +45,8 @@ public class Test {
 //        myLinkedList.remove(student4);
 //        MyLinkedList<Student> cloneLinkedList = myLinkedList.clone();
 
-        System.out.println(myLinkedList.contains(student4));
+//        System.out.println(myLinkedList.contains(student5));
+        System.out.println(myLinkedList.indexOf(student5));
 
 //        for (int i = 0; i < myLinkedList.size(); i++) {
 //            Student student = (Student) myLinkedList.get(i);

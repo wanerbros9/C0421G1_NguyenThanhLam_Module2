@@ -127,4 +127,15 @@ public class MyLinkedList<E> {
         }
         return false;
     }
+
+    public int indexOf(E element){
+        Node temp = head;
+        for (int i=0;i<numNodes;i++){
+            if (temp.getData().equals(element)){
+                return i;
+            }
+            temp = temp.next;
+        }
+        return -1;
+    }
 }

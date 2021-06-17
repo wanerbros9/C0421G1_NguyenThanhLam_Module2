@@ -1,6 +1,6 @@
 package _10_list.bai_tap.ArrayList;
 
-public class Test {
+public class TestMyArrayList {
     public static class Student {
         private int id;
         private String name;
