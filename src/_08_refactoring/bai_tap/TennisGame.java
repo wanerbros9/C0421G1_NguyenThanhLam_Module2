@@ -1,27 +1,27 @@
 package _08_refactoring.bai_tap;
 
 public class TennisGame {
-    public static String getScore(String player1Name, String player2Name, int m_score1, int m_score2) {
+    public static String getScore(String player1Name, String player2Name, int player1Score, int player2Score) {
         String score = "";
         int tempScore = 0;
-        if (m_score1 == m_score2) {
-            score = getString(m_score1);
-        } else if (m_score1 >= 4 || m_score2 >= 4) {
-            score = getString(m_score1, m_score2);
+        if (player1Score == player2Score) {
+            score = getString(player1Score);
+        } else if (player1Score >= 4 || player2Score >= 4) {
+            score = getString(player1Score, player2Score);
         } else {
-            score = getString(m_score1, m_score2, score);
+            score = getString(player1Score, player2Score, score);
         }
         return score;
     }
 
-    private static String getString(int m_score1, int m_score2, String score) {
+    private static String getString(int player1Score, int player2Score, String score) {
         int tempScore;
         for (int i = 1; i < 3; i++) {
             if (i == 1) {
-                tempScore = m_score1;
+                tempScore = player1Score;
             } else {
                 score += "-";
-                tempScore = m_score2;
+                tempScore = player2Score;
             }
             switch (tempScore) {
                 case 0:
@@ -41,9 +41,9 @@ public class TennisGame {
         return score;
     }
 
-    private static String getString(int m_score1, int m_score2) {
+    private static String getString(int player1Score, int player2Score) {
         String score;
-        int minusResult = m_score1 - m_score2;
+        int minusResult = player1Score - player2Score;
         if (minusResult == 1) {
             score = "Advantage player1";
         } else if (minusResult == -1) {
@@ -56,9 +56,9 @@ public class TennisGame {
         return score;
     }
 
-    private static String getString(int m_score1) {
+    private static String getString(int player1Score) {
         String score;
-        switch (m_score1) {
+        switch (player1Score) {
             case 0:
                 score = "Love-All";
                 break;
