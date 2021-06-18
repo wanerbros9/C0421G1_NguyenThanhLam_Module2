@@ -110,17 +110,17 @@ public class MyLinkedList<E> {
         Node temp = head;
         returnLinkedList.addFirst((E) temp.data);
         temp = temp.next;
-        while (temp!=null){
+        while (temp != null) {
             returnLinkedList.addLast((E) temp.data);
             temp = temp.next;
         }
         return returnLinkedList;
     }
 
-    public boolean contains(E element){
+    public boolean contains(E element) {
         Node temp = head;
-        while (temp.next!=null){
-            if (temp.data.equals(element)){
+        while (temp.next != null) {
+            if (temp.data.equals(element)) {
                 return true;
             }
             temp = temp.next;
@@ -128,14 +128,23 @@ public class MyLinkedList<E> {
         return false;
     }
 
-    public int indexOf(E element){
+    public int indexOf(E element) {
         Node temp = head;
-        for (int i=0;i<numNodes;i++){
-            if (temp.getData().equals(element)){
+        for (int i = 0; i < numNodes; i++) {
+            if (temp.getData().equals(element)) {
                 return i;
             }
             temp = temp.next;
         }
         return -1;
+    }
+
+    public void clear() {
+        Node temp = head;
+        head = null;
+        for (int i = 0; i < numNodes; i++) {
+            temp.next = null;
+        }
+        numNodes = 0;
     }
 }
