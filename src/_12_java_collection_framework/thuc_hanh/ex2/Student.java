@@ -1,17 +1,18 @@
-package _03_array_java.bai_tap_anhTrung;
+package _12_java_collection_framework.thuc_hanh.ex2;
 
 public class Student {
-    private int id;
     private String name;
     private int age;
     private String address;
 
-    public int getId() {
-        return id;
+    public Student() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Student(String name, int age, String address) {
+        super();
+        this.name = name;
+        this.age = age;
+        this.address = address;
     }
 
     public String getName() {
@@ -38,24 +39,12 @@ public class Student {
         this.address = address;
     }
 
-    public Student(int id, String name, int age, String address) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.address = address;
-    }
-
-    public Student() {
-    }
-
     @Override
     public String toString() {
         return "Student{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age= " + age +
+                "name='" + name + '\'' +
+                ", age=" + age +
                 ", address='" + address + '\'' +
                 '}';
     }
 }
-
