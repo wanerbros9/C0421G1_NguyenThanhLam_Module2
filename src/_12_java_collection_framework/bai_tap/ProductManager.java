@@ -41,7 +41,7 @@ public class ProductManager {
                     sortProduct();
                     break;
                 case 7:
-                    
+
                 case 8:
                     System.exit(1);
                     break;
