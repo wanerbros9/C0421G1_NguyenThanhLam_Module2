@@ -1,8 +1,6 @@
 package _12_java_collection_framework.bai_tap;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProductManager {
     private static boolean check = false;
@@ -17,8 +15,8 @@ public class ProductManager {
             System.out.println("3. Rename Product");
             System.out.println("4. Delete Product");
             System.out.println("5. Find Product");
-            System.out.println("6. Ascending Product");
-            System.out.println("7. Descending Product");
+            System.out.println("6. Descending Product");
+            System.out.println("7. Ascending Product");
             System.out.println("8. Exit Program");
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
@@ -38,10 +36,11 @@ public class ProductManager {
                     findProduct();
                     break;
                 case 6:
-                    sortProduct();
+                    descending();
                     break;
                 case 7:
-
+                    ascending();
+                    break;
                 case 8:
                     System.exit(1);
                     break;
@@ -115,7 +114,26 @@ public class ProductManager {
         }
     }
 
-    private static void sortProduct() {
+    private static void descending() {
+        Collections.sort(products, new Comparator<Product>() {
 
+            @Override
+            public int compare(Product o1, Product o2) {
+                return (int) (o2.getPrice() - o1.getPrice());
+            }
+        });
+        System.out.println("The price list after sort: ");
+        displayProduct();
+    }
+
+    private static void ascending() {
+        Collections.sort(products, new Comparator<Product>() {
+            @Override
+            public int compare(Product o1, Product o2) {
+                return (int) (o1.getPrice() - o2.getPrice());
+            }
+        });
+        System.out.println("The price list after sort: ");
+        displayProduct();
     }
 }
