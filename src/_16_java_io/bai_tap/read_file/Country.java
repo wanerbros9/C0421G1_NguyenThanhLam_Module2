@@ -1,4 +1,4 @@
-package _16_java_io.bai_tap;
+package _16_java_io.bai_tap.read_file;
 
 public class Country {
     private int id;

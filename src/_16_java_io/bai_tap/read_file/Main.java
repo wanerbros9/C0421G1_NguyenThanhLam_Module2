@@ -1,4 +1,4 @@
-package _16_java_io.bai_tap;
+package _16_java_io.bai_tap.read_file;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -12,7 +12,7 @@ public class Main {
         BufferedReader br = null;
         try {
             String line;
-            br = new BufferedReader(new FileReader("G:\\Github\\C0421G1_NguyenThanhLam_Module2\\src\\_16_java_io\\bai_tap\\countries.csv"));
+            br = new BufferedReader(new FileReader("G:\\Github\\C0421G1_NguyenThanhLam_Module2\\src\\_16_java_io\\bai_tap\\read_file\\countries.csv"));
 
             while ((line = br.readLine()) != null) {
                 printCountry(parseCsvLine(line));
