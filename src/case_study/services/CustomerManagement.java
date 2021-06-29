@@ -4,17 +4,17 @@ import case_study.controllers.FuramaController;
 
 import java.util.Scanner;
 
-public class EmployeeManagement {
+public class CustomerManagement {
     public static Scanner input() {
         Scanner scanner = new Scanner(System.in);
         return scanner;
     }
 
-    public void displayEmployeeManagement() {
+    public void displayCustomerManagement() {
         while (true) {
-            System.out.println("1. Display list employee");
-            System.out.println("2. Add new employee");
-            System.out.println("3. Edit employee");
+            System.out.println("1. Display list customer");
+            System.out.println("2. Add new customer");
+            System.out.println("3. Edit customer");
             System.out.println("4. Return main menu");
             int choice = input().nextInt();
             switch (choice) {
