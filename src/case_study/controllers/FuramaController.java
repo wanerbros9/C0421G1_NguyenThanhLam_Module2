@@ -17,6 +17,7 @@ public class FuramaController {
             System.out.println("4. Booking Management");
             System.out.println("5. Promotion Management");
             System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
             int choice = input().nextInt();
             switch (choice) {
                 case 1:

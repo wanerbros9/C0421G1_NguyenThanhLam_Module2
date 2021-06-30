@@ -2,22 +2,22 @@ package case_study.services;
 
 public class BookingServiceImpl implements BookingService{
     @Override
-    public void addEmployee() {
+    public void add() {
 
     }
 
     @Override
-    public void editEmployee() {
+    public void edit() {
 
     }
 
     @Override
-    public void deleteEmployee() {
+    public void delete() {
 
     }
 
     @Override
-    public void displayEmployee() {
+    public void display() {
 
     }
 }
