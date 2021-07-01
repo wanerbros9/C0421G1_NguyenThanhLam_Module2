@@ -1,13 +1,13 @@
 package case_study.models;
 
-public class Room extends Villa{
+public class Room extends Facility{
     private String includeService;
 
     public Room() {
     }
 
-    public Room(String name, double area, double price, int capacity, String guestStay, String roomStandard, double poolArea, int floor, String includeService) {
-        super(name, area, price, capacity, guestStay, roomStandard, poolArea, floor);
+    public Room(String name, double area, double price, int capacity, String guestStay, String includeService) {
+        super(name, area, price, capacity, guestStay);
         this.includeService = includeService;
     }
 
