@@ -16,7 +16,7 @@ public class CustomerManagement {
             System.out.println("2. Add new customer");
             System.out.println("3. Edit customer");
             System.out.println("4. Return main menu");
-            int choice = input().nextInt();
+            int choice = choiceNumber();
             switch (choice) {
                 case 1:
                     new CustomerServiceImpl().display();
@@ -34,5 +34,19 @@ public class CustomerManagement {
                     System.out.println("Please enter correct number");
             }
         }
+    }
+
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
     }
 }

@@ -15,7 +15,7 @@ public class PromotionManagement {
             System.out.println("1. Display list customers use service");
             System.out.println("2. Display list customers get voucher");
             System.out.println("3. Return main menu");
-            int choice = input().nextInt();
+            int choice = choiceNumber();
             switch (choice) {
                 case 1:
                     break;
@@ -28,5 +28,19 @@ public class PromotionManagement {
                     System.out.println("Please enter correct number");
             }
         }
+    }
+
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
     }
 }

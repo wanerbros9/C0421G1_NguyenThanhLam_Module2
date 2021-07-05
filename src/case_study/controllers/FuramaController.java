@@ -5,10 +5,11 @@ import case_study.services.*;
 import java.util.Scanner;
 
 public class FuramaController {
-    public static Scanner input(){
-            Scanner scanner = new Scanner(System.in);
-            return scanner;
+    public static Scanner input() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner;
     }
+
     public void displayMainMenu() {
         while (true) {
             System.out.println("1. Employee Management");
@@ -18,7 +19,7 @@ public class FuramaController {
             System.out.println("5. Promotion Management");
             System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
-            int choice = input().nextInt();
+            int choice = choiceNumber();
             switch (choice) {
                 case 1:
                     new EmployeeManagement().displayEmployeeManagement();
@@ -42,5 +43,19 @@ public class FuramaController {
                     System.out.println("Please enter correct number");
             }
         }
+    }
+
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
     }
 }

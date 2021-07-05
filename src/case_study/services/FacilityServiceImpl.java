@@ -18,9 +18,9 @@ public class FacilityServiceImpl implements FacilityService {
     public static Map<Facility, Integer> facilities = new LinkedHashMap<>();
 
     static {
-        House house = new House("Sand House",100,3000,5,"day","vip",4);
-        Villa villa = new Villa("Ocean Villa",300,10000000,10,"week","royal",40,1);
-        Room room = new Room("Game Room",40,5000,2,"month","Free breakfast");
+        House house = new House("Sand House", 100, 3000, 5, "day", "vip", 4);
+        Villa villa = new Villa("Ocean Villa", 300, 40000, 10, "week", "royal", 40, 1);
+        Room room = new Room("Game Room", 40, 5000, 2, "month", "Free breakfast");
         facilities.put(room, 0);
         facilities.put(house, 0);
         facilities.put(villa, 0);
@@ -28,7 +28,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void add() {
-
+        displayAddNewService();
     }
 
     @Override
@@ -52,13 +52,13 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void displayAddNewService() {
-        while (true){
+        while (true) {
             System.out.println("1. Add New Room");
             System.out.println("2. Add New House");
             System.out.println("3. Add New Villa");
             System.out.print("Enter your choice: ");
             int choice = input().nextInt();
-            switch (choice){
+            switch (choice) {
                 case 1:
                     addNewRoom();
                     break;
@@ -68,26 +68,66 @@ public class FacilityServiceImpl implements FacilityService {
                 case 3:
                     addNewVilla();
                     break;
+                default:
+                    System.out.println("Enter your choice");
             }
         }
     }
 
     @Override
     public void addNewHouse() {
-        for (Facility facility : facilities.keySet()){
-            if (facility.getName().equals("Game Room")){
-                facilities.put(facility,facilities.get(facility)+1);
-            }
-        }
+        System.out.print("Enter new house: ");
+        String house = input().nextLine();
+        System.out.print("Enter new area: ");
+        double area = input().nextDouble();
+        System.out.print("Enter new price: ");
+        double price = input().nextDouble();
+        System.out.print("Enter new capacity: ");
+        int capacity = input().nextInt();
+        System.out.print("Enter new kind of guest stay: ");
+        String guestStay = input().nextLine();
+        System.out.print("Enter new room standard: ");
+        String roomStandard = input().nextLine();
+        System.out.print("Enter new floor: ");
+        int floor = input().nextInt();
+        facilities.put(new House(house, area, price, capacity, guestStay, roomStandard, floor), 0);
     }
 
     @Override
     public void addNewRoom() {
-
+        System.out.print("Enter new house: ");
+        String house = input().nextLine();
+        System.out.print("Enter new area: ");
+        double area = input().nextDouble();
+        System.out.print("Enter new price: ");
+        double price = input().nextDouble();
+        System.out.print("Enter new capacity: ");
+        int capacity = input().nextInt();
+        System.out.print("Enter new kind of guest stay: ");
+        String guestStay = input().nextLine();
+        System.out.print("Enter new free service: ");
+        String freeService = input().nextLine();
+        facilities.put(new Room(house, area, price, capacity, guestStay, freeService), 0);
     }
 
     @Override
     public void addNewVilla() {
-
+        System.out.print("Enter new house: ");
+        String house = input().nextLine();
+        System.out.print("Enter new area: ");
+        double area = input().nextDouble();
+        System.out.print("Enter new price: ");
+        double price = input().nextDouble();
+        System.out.print("Enter new capacity: ");
+        int capacity = input().nextInt();
+        System.out.print("Enter new kind of guest stay: ");
+        String guestStay = input().nextLine();
+        System.out.print("Enter new room standard: ");
+        String roomStandard = input().nextLine();
+        System.out.print("Enter new area of pool: ");
+        double poolArea = input().nextDouble();
+        System.out.print("Enter new floor: ");
+        int floor = input().nextInt();
+        facilities.put(new Villa(house, area, price, capacity, guestStay, roomStandard, poolArea, floor), 0);
     }
 }
