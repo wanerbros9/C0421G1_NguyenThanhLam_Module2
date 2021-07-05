@@ -18,12 +18,14 @@ public class FacilityManagement {
             System.out.println("2. Add new facility");
             System.out.println("3. Display list facility maintenance");
             System.out.println("4. Return main menu");
+            System.out.print("Enter your choice: ");
             int choice = choiceNumber();
             switch (choice) {
                 case 1:
                     new FacilityServiceImpl().display();
                     break;
                 case 2:
+                    new FacilityServiceImpl().displayAddNewService();
                     break;
                 case 3:
                     break;

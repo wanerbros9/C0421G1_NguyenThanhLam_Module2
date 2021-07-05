@@ -1,10 +1,10 @@
 package case_study.services;
 
 import case_study.models.Employee;
+import case_study.models.Facility;
+import case_study.utils.ReadAndWriteFileByByteStream;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class EmployeeServiceImpl implements EmployeeService {
     private static boolean check = false;
@@ -14,13 +14,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         return scanner;
     }
 
+    private static final String FILE_PATH = "src/case_study/data/employee.csv";
     public static List<Employee> employees = new ArrayList<>();
 
-    static {
-        employees.add(new Employee("lam", "16/10/1998", "male", "CD1", "0825161098", "lam@gmail.com", "NV1", "Cao dang", "Le tan", 10000));
-        employees.add(new Employee("khoa", "31/10/1998", "male", "CD2", "0825161000", "khoa@gmail.com", "NV2", "Dai hoc", "Quan ly", 12000));
-        employees.add(new Employee("tung", "5/12/1998", "female", "CD3", "0825161111", "tung@gmail.com", "NV3", "Sau dai hoc", "Buong phong", 700));
-    }
+//    static {
+//        employees.add(new Employee("lam", "16/10/1998", "male", "CD1", "0825161098", "lam@gmail.com", "NV1", "Cao dang", "Le tan", 10000));
+//        employees.add(new Employee("khoa", "31/10/1998", "male", "CD2", "0825161000", "khoa@gmail.com", "NV2", "Dai hoc", "Quan ly", 12000));
+//        employees.add(new Employee("tung", "5/12/1998", "female", "CD3", "0825161111", "tung@gmail.com", "NV3", "Sau dai hoc", "Buong phong", 700));
+//    }
 
     @Override
     public void add() {
@@ -46,6 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         double salary = input().nextDouble();
         Employee employee = new Employee(name, birth, sex, citizenID, phone, email, employeeID, level, position, salary);
         employees.add(employee);
+        new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees,FILE_PATH);
     }
 
     @Override
@@ -91,10 +93,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void display() {
-        for (Employee employee : employees) {
-            if (employee != null) {
-                System.out.println(employee);
-            }
+        employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
+        for (Employee employee : employees){
+            System.out.println(employee);
         }
     }
 }

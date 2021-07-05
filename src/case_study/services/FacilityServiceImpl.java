@@ -1,5 +1,6 @@
 package case_study.services;
 
+import case_study.controllers.FacilityManagement;
 import case_study.models.Facility;
 import case_study.models.House;
 import case_study.models.Room;
@@ -56,8 +57,9 @@ public class FacilityServiceImpl implements FacilityService {
             System.out.println("1. Add New Room");
             System.out.println("2. Add New House");
             System.out.println("3. Add New Villa");
+            System.out.println("4. Return main menu");
             System.out.print("Enter your choice: ");
-            int choice = input().nextInt();
+            int choice = choiceNumber();
             switch (choice) {
                 case 1:
                     addNewRoom();
@@ -68,15 +70,17 @@ public class FacilityServiceImpl implements FacilityService {
                 case 3:
                     addNewVilla();
                     break;
+                case 4:
+                    new FacilityManagement().displayFacilityManagement();
                 default:
-                    System.out.println("Enter your choice");
+                    System.out.println("Please enter correct number");
             }
         }
     }
 
     @Override
     public void addNewHouse() {
-        System.out.print("Enter new house: ");
+        System.out.print("Enter new house name: ");
         String house = input().nextLine();
         System.out.print("Enter new area: ");
         double area = input().nextDouble();
@@ -95,7 +99,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void addNewRoom() {
-        System.out.print("Enter new house: ");
+        System.out.print("Enter new room name: ");
         String house = input().nextLine();
         System.out.print("Enter new area: ");
         double area = input().nextDouble();
@@ -112,7 +116,7 @@ public class FacilityServiceImpl implements FacilityService {
 
     @Override
     public void addNewVilla() {
-        System.out.print("Enter new house: ");
+        System.out.print("Enter new villa name: ");
         String house = input().nextLine();
         System.out.print("Enter new area: ");
         double area = input().nextDouble();
@@ -129,5 +133,19 @@ public class FacilityServiceImpl implements FacilityService {
         System.out.print("Enter new floor: ");
         int floor = input().nextInt();
         facilities.put(new Villa(house, area, price, capacity, guestStay, roomStandard, poolArea, floor), 0);
+    }
+
+    private static int choiceNumber() {
+        boolean checkValid = false;
+        int choice = 0;
+        while (!checkValid) {
+            try {
+                choice = Integer.parseInt(input().nextLine());
+                checkValid = true;
+            } catch (NumberFormatException e) {
+                System.out.print("You must enter a number: ");
+            }
+        }
+        return choice;
     }
 }

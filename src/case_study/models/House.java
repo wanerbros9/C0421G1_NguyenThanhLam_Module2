@@ -1,6 +1,6 @@
 package case_study.models;
 
-public class House extends Facility{
+public class House extends Facility {
     private String roomStandard;
     private int floor;
 
@@ -33,6 +33,6 @@ public class House extends Facility{
     public String toString() {
         return super.toString() +
                 ", roomStandard='" + roomStandard + '\'' +
-                ", floor=" + floor;
+                ", floor='" + floor + '\'';
     }
 }

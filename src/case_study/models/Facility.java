@@ -62,9 +62,9 @@ public abstract class Facility {
     public String toString() {
         return "Facility: " +
                 "name='" + name + '\'' +
-                ", area=" + area +
-                ", price=" + price +
-                ", capacity=" + capacity +
+                ", area='" + area + '\'' +
+                ", price='" + price + '\'' +
+                ", capacity='" + capacity + '\'' +
                 ", guestStay='" + guestStay + '\'';
     }
 }

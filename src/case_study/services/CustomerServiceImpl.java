@@ -1,6 +1,8 @@
 package case_study.services;
 
 import case_study.models.Customer;
+import case_study.models.Employee;
+import case_study.utils.ReadAndWriteFileByByteStream;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,14 +16,14 @@ public class CustomerServiceImpl implements CustomerService {
         Scanner scanner = new Scanner(System.in);
         return scanner;
     }
-
+    public static final String FILE_PATH = "src/case_study/data/customer.csv";
     public static List<Customer> customers = new LinkedList<>();
 
-    static {
-        customers.add(new Customer("lam", "16/10/1998", "male", "CD2", "0825161098", "lam@gmail.com", "K1", "Vip", "Da Nang"));
-        customers.add(new Customer("khoa", "31/10/1998", "male", "CD67", "0825161000", "khoa@gmail.com", "K2", "Platinum", "Hue"));
-        customers.add(new Customer("tung", "5/12/1998", "female", "CD123", "0825161111", "tung@gmail.com", "K3", "Diamond", "Vinh"));
-    }
+//    static {
+//        customers.add(new Customer("lam", "16/10/1998", "male", "CD2", "0825161098", "lam@gmail.com", "K1", "Vip", "Da Nang"));
+//        customers.add(new Customer("khoa", "31/10/1998", "male", "CD67", "0825161000", "khoa@gmail.com", "K2", "Platinum", "Hue"));
+//        customers.add(new Customer("tung", "5/12/1998", "female", "CD123", "0825161111", "tung@gmail.com", "K3", "Diamond", "Vinh"));
+//    }
 
 
     @Override
@@ -46,6 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
         String address = input().nextLine();
         Customer customer = new Customer(name, birth, sex, citizenID, phone, email, customerID, customerType, address);
         customers.add(customer);
+        new ReadAndWriteFileByByteStream<Customer>().writeFileByByteStream(customers,FILE_PATH);
     }
 
     @Override
@@ -88,10 +91,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void display() {
+        customers = (List<Customer>) new ReadAndWriteFileByByteStream<Customer>().readFileByByteStream(FILE_PATH);
         for (Customer customer : customers) {
-            if (customer != null) {
                 System.out.println(customer);
-            }
         }
     }
 }
