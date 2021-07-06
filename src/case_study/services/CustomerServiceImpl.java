@@ -28,6 +28,8 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void add() {
+        System.out.print("Enter id: ");
+        String id = input().nextLine();
         System.out.print("Enter name: ");
         String name = input().nextLine();
         System.out.print("Date of birth: ");
@@ -46,17 +48,18 @@ public class CustomerServiceImpl implements CustomerService {
         String customerType = input().nextLine();
         System.out.print("Enter address: ");
         String address = input().nextLine();
-        Customer customer = new Customer(name, birth, sex, citizenID, phone, email, customerID, customerType, address);
+        Customer customer = new Customer(id, name, birth, sex, citizenID, phone, email, customerID, customerType, address);
         customers.add(customer);
         new ReadAndWriteFileByByteStream<Customer>().writeFileByByteStream(customers,FILE_PATH);
     }
 
     @Override
     public void edit() {
-        System.out.print("Enter customer name you want to change information: ");
-        String name = input().nextLine();
+        customers = (List<Customer>) new ReadAndWriteFileByByteStream<Customer>().readFileByByteStream(FILE_PATH);
+        System.out.print("Enter customer id you want to change information: ");
+        String id = input().nextLine();
         for (Customer editCustomer : customers) {
-            if (editCustomer.getName().equals(name)) {
+            if (editCustomer.getId().equals(id)) {
                 System.out.print("Enter customer new name: ");
                 String newName = input().nextLine();
                 editCustomer.setName(newName);
@@ -81,6 +84,10 @@ public class CustomerServiceImpl implements CustomerService {
                 check = true;
                 break;
             }
+        }
+        if (check){
+            System.out.println("Complete update");
+            new ReadAndWriteFileByByteStream<Customer>().writeFileByByteStream(customers,FILE_PATH);
         }
     }
 

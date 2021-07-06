@@ -1,6 +1,13 @@
 package case_study.services;
 
-public class BookingServiceImpl implements BookingService{
+import case_study.models.Customer;
+import case_study.utils.ReadAndWriteFileByByteStream;
+
+import java.util.LinkedList;
+import java.util.List;
+
+public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements BookingService{
+
     @Override
     public void add() {
 

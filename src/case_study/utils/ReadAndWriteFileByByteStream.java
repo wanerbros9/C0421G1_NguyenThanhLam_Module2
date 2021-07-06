@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ReadAndWriteFileByByteStream<K> {
-    public static Object readFileByByteStream(String filePath){
+    public Object readFileByByteStream(String filePath){
         //Khai báo đối tượng FileInputStream và ObjectInputStream trỏ tới null
         FileInputStream FIn = null;
         ObjectInputStream OIn = null;

@@ -3,6 +3,7 @@ package case_study.models;
 import java.io.Serializable;
 
 public abstract class Person implements Serializable {
+    private String id;
     private String name;
     private String birth;
     private String sex;
@@ -13,13 +14,22 @@ public abstract class Person implements Serializable {
     public Person() {
     }
 
-    public Person(String name, String birth, String sex, String citizenID, String phone, String email) {
+    public Person(String id, String name, String birth, String sex, String citizenID, String phone, String email) {
+        this.id = id;
         this.name = name;
         this.birth = birth;
         this.sex = sex;
         this.citizenID = citizenID;
         this.phone = phone;
         this.email = email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -72,11 +82,12 @@ public abstract class Person implements Serializable {
 
     @Override
     public String toString() {
-        return "name='" + name + '\'' +
+        return "id='" + id + '\'' +
+                "name='" + name + '\'' +
                 ", birth='" + birth + '\'' +
                 ", sex='" + sex + '\'' +
                 ", citizenID='" + citizenID + '\'' +
                 ", phone='" + phone + '\'' +
-                ", email='" + email + '\''+", ";
+                ", email='" + email + '\'' + ", ";
     }
 }

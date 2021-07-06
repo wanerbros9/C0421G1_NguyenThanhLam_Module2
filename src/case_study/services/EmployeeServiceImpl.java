@@ -1,5 +1,6 @@
 package case_study.services;
 
+import case_study.models.Customer;
 import case_study.models.Employee;
 import case_study.models.Facility;
 import case_study.utils.ReadAndWriteFileByByteStream;
@@ -25,6 +26,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void add() {
+        System.out.print("Enter id: ");
+        String id = input().nextLine();
         System.out.print("Enter name: ");
         String name = input().nextLine();
         System.out.print("Date of birth: ");
@@ -45,17 +48,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         String position = input().nextLine();
         System.out.print("Enter salary: ");
         double salary = input().nextDouble();
-        Employee employee = new Employee(name, birth, sex, citizenID, phone, email, employeeID, level, position, salary);
+        Employee employee = new Employee(id, name, birth, sex, citizenID, phone, email, employeeID, level, position, salary);
         employees.add(employee);
-        new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees,FILE_PATH);
+        new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees, FILE_PATH);
     }
 
     @Override
     public void edit() {
-        System.out.print("Enter employee name you want to change information: ");
-        String name = input().nextLine();
+        employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
+        System.out.print("Enter employee id you want to change information: ");
+        String id = input().nextLine();
         for (Employee editEmployee : employees) {
-            if (editEmployee.getName().equals(name)) {
+            if (editEmployee.getId().equals(id)) {
                 System.out.print("Enter employee new name: ");
                 String newName = input().nextLine();
                 editEmployee.setName(newName);
@@ -84,6 +88,10 @@ public class EmployeeServiceImpl implements EmployeeService {
                 break;
             }
         }
+        if (check){
+            System.out.println("Update completed");
+            new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees,FILE_PATH);
+        }
     }
 
     @Override
@@ -94,7 +102,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void display() {
         employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
-        for (Employee employee : employees){
+        for (Employee employee : employees) {
             System.out.println(employee);
         }
     }
