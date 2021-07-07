@@ -6,7 +6,6 @@ import case_study.models.House;
 import case_study.models.Room;
 import case_study.models.Villa;
 import case_study.utils.ReadAndWriteFileByByteStream;
-import javafx.beans.property.ReadOnlyMapProperty;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -26,15 +25,6 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
     public static Map<Facility, Integer> houses = new LinkedHashMap<>();
     public static Map<Facility, Integer> rooms = new LinkedHashMap<>();
     public static Map<Facility, Integer> villas = new LinkedHashMap<>();
-
-//    static {
-//        House house = new House("Sand House", 100, 3000, 5, "day", "vip", 4);
-//        Villa villa = new Villa("Ocean Villa", 300, 40000, 10, "week", "royal", 40, 1);
-//        Room room = new Room("Game Room", 40, 5000, 2, "month", "Free breakfast");
-//        facilities.put(room, 0);
-//        facilities.put(house, 0);
-//        facilities.put(villa, 0);
-//    }
 
     @Override
     public void add() {
@@ -97,6 +87,9 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
     @Override
     public void addNewHouse() {
         houses = (Map<Facility, Integer>) new ReadAndWriteFileByByteStream<Facility>().readFileByByteStream(FILE_PATH_HOUSE);
+        if (houses == null) {
+            houses = new LinkedHashMap<>();
+        }
         System.out.print("Enter new house name: ");
         String house = input().nextLine();
         System.out.print("Enter new area: ");
@@ -111,13 +104,16 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
         String roomStandard = input().nextLine();
         System.out.print("Enter new floor: ");
         int floor = input().nextInt();
-        facilities.put(new House(house, area, price, capacity, guestStay, roomStandard, floor), 0);
-        new ReadAndWriteFileByByteStream<House>().writeFileByByteStreamUseMap(facilities, FILE_PATH_HOUSE);
+        houses.put(new House(house, area, price, capacity, guestStay, roomStandard, floor), 0);
+        new ReadAndWriteFileByByteStream<House>().writeFileByByteStreamUseMap(houses, FILE_PATH_HOUSE);
     }
 
     @Override
     public void addNewRoom() {
         rooms = (Map<Facility, Integer>) new ReadAndWriteFileByByteStream<Facility>().readFileByByteStream(FILE_PATH_ROOM);
+        if (rooms == null) {
+            rooms = new LinkedHashMap<>();
+        }
         System.out.print("Enter new room name: ");
         String house = input().nextLine();
         System.out.print("Enter new area: ");
@@ -130,13 +126,16 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
         String guestStay = input().nextLine();
         System.out.print("Enter new free service: ");
         String freeService = input().nextLine();
-        facilities.put(new Room(house, area, price, capacity, guestStay, freeService), 0);
-        new ReadAndWriteFileByByteStream<Room>().writeFileByByteStreamUseMap(facilities, FILE_PATH_ROOM);
+        rooms.put(new Room(house, area, price, capacity, guestStay, freeService), 0);
+        new ReadAndWriteFileByByteStream<Room>().writeFileByByteStreamUseMap(rooms, FILE_PATH_ROOM);
     }
 
     @Override
     public void addNewVilla() {
         villas = (Map<Facility, Integer>) new ReadAndWriteFileByByteStream<Facility>().readFileByByteStream(FILE_PATH_VILLA);
+        if (villas == null) {
+            villas = new LinkedHashMap<>();
+        }
         System.out.print("Enter new villa name: ");
         String house = input().nextLine();
         System.out.print("Enter new area: ");
@@ -153,8 +152,8 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
         double poolArea = input().nextDouble();
         System.out.print("Enter new floor: ");
         int floor = input().nextInt();
-        facilities.put(new Villa(house, area, price, capacity, guestStay, roomStandard, poolArea, floor), 0);
-        new ReadAndWriteFileByByteStream<Villa>().writeFileByByteStreamUseMap(facilities, FILE_PATH_VILLA);
+        villas.put(new Villa(house, area, price, capacity, guestStay, roomStandard, poolArea, floor), 0);
+        new ReadAndWriteFileByByteStream<Villa>().writeFileByByteStreamUseMap(villas, FILE_PATH_VILLA);
     }
 
     private static int choiceNumber() {
