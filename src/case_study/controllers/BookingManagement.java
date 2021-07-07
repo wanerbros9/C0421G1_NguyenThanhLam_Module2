@@ -1,6 +1,7 @@
 package case_study.controllers;
 
 import case_study.controllers.FuramaController;
+import case_study.services.BookingServiceImpl;
 
 import java.util.Scanner;
 
@@ -21,6 +22,7 @@ public class BookingManagement {
             int choice = choiceNumber();
             switch (choice) {
                 case 1:
+                    new BookingServiceImpl().add();
                     break;
                 case 2:
                     break;
