@@ -13,10 +13,12 @@ public class CustomerManagement {
 
     public void displayCustomerManagement() {
         while (true) {
+            System.out.println("-----Furama Resort-----");
             System.out.println("1. Display list customer");
             System.out.println("2. Add new customer");
             System.out.println("3. Edit customer");
             System.out.println("4. Return main menu");
+            System.out.print("Enter your choice: ");
             int choice = choiceNumber();
             switch (choice) {
                 case 1:

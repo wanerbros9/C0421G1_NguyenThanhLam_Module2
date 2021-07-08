@@ -13,18 +13,21 @@ public class BookingManagement {
 
     public void displayBookingManagement() {
         while (true) {
+            System.out.println("-----Furama Resort-----");
             System.out.println("1. Add new booking");
             System.out.println("2. Display booking list");
-            System.out.println("3. Create new contracts");
+            System.out.println("3. Create new contract");
             System.out.println("4. Display list contracts");
             System.out.println("5. Edit contracts");
             System.out.println("6. Return main menu");
+            System.out.print("Enter your choice: ");
             int choice = choiceNumber();
             switch (choice) {
                 case 1:
                     new BookingServiceImpl().add();
                     break;
                 case 2:
+                    new BookingServiceImpl().display();
                     break;
                 case 3:
                     break;

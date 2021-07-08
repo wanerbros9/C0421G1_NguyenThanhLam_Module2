@@ -1,11 +1,14 @@
 package case_study.utils;
 
+import case_study.models.Booking;
 import case_study.models.Employee;
 import case_study.models.Facility;
 
 import java.io.*;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class ReadAndWriteFileByByteStream<K> {
     public Object readFileByByteStream(String filePath){
@@ -53,6 +56,26 @@ public class ReadAndWriteFileByByteStream<K> {
             outputStream = new FileOutputStream(file);
             objectOutputStream = new ObjectOutputStream(outputStream);
             objectOutputStream.writeObject(map);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+                objectOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void writeFileByByteStreamUseTreeSet(TreeSet<Booking> treeSet, String filePath) {
+        File file = new File(filePath);
+        FileOutputStream outputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            outputStream = new FileOutputStream(file);
+            objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(treeSet);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

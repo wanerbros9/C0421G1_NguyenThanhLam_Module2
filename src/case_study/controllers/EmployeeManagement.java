@@ -13,6 +13,7 @@ public class EmployeeManagement {
 
     public void displayEmployeeManagement() {
         while (true) {
+            System.out.println("-----Furama Resort-----");
             System.out.println("1. Display list employee");
             System.out.println("2. Add new employee");
             System.out.println("3. Edit employee");

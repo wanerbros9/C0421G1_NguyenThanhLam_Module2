@@ -12,6 +12,7 @@ public class PromotionManagement {
 
     public void displayPromotionManagement() {
         while (true) {
+            System.out.println("-----Furama Resort-----");
             System.out.println("1. Display list customers use service");
             System.out.println("2. Display list customers get voucher");
             System.out.println("3. Return main menu");

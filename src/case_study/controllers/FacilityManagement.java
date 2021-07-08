@@ -14,6 +14,7 @@ public class FacilityManagement {
 
     public void displayFacilityManagement() {
         while (true) {
+            System.out.println("-----Furama Resort-----");
             System.out.println("1. Display list facility");
             System.out.println("2. Add new facility");
             System.out.println("3. Display list facility maintenance");
@@ -25,7 +26,7 @@ public class FacilityManagement {
                     new FacilityServiceImpl().display();
                     break;
                 case 2:
-                    new FacilityServiceImpl().displayAddNewService();
+                    new NewServiceManagement().displayAddNewService();
                     break;
                 case 3:
                     break;
