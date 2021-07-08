@@ -3,6 +3,7 @@ package case_study.models;
 import java.io.Serializable;
 
 public class Booking implements Comparable<Booking>, Serializable {
+    private static final long serialVersionUID = 8146614356296966760L;
     private String bookingID;
     private String startDate;
     private String endDate;

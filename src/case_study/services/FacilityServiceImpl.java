@@ -6,6 +6,7 @@ import case_study.models.House;
 import case_study.models.Room;
 import case_study.models.Villa;
 import case_study.utils.ReadAndWriteFileByByteStream;
+import case_study.utils.Regex;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -25,6 +26,8 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
     public static Map<Facility, Integer> houses = new LinkedHashMap<>();
     public static Map<Facility, Integer> rooms = new LinkedHashMap<>();
     public static Map<Facility, Integer> villas = new LinkedHashMap<>();
+
+    Regex regex = new Regex();
 
     @Override
     public void add() {
@@ -67,20 +70,80 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
         if (houses == null) {
             houses = new LinkedHashMap<>();
         }
-        System.out.print("Enter new house name: ");
-        String house = input().nextLine();
-        System.out.print("Enter new area: ");
-        double area = input().nextDouble();
-        System.out.print("Enter new price: ");
-        double price = input().nextDouble();
-        System.out.print("Enter new capacity: ");
-        int capacity = input().nextInt();
-        System.out.print("Enter new kind of guest stay: ");
-        String guestStay = input().nextLine();
-        System.out.print("Enter new room standard: ");
-        String roomStandard = input().nextLine();
-        System.out.print("Enter new floor: ");
-        int floor = input().nextInt();
+        String house = "";
+        while (true) {
+            System.out.print("Enter new house name: ");
+            house = input().nextLine();
+            if (regex.regexNameService(house) == true) {
+                break;
+            } else {
+                System.out.println("Please enter in SVHO-YYYY format with Y is 4 numbers");
+            }
+        }
+        int area = 0;
+        while (true) {
+            System.out.print("Enter new area: ");
+            area = input().nextInt();
+            String str = String.valueOf(area);
+            if (regex.area(str) == true) {
+                break;
+            } else {
+                System.out.println("Usage area must be bigger than 30");
+            }
+        }
+        double price = 0;
+        while (true) {
+            System.out.print("Enter new price: ");
+            price = input().nextDouble();
+            String str = String.valueOf(price);
+            if (regex.rentalFee(str) == true) {
+                break;
+            } else {
+                System.out.println("Price must be positive number");
+            }
+        }
+        int capacity = 0;
+        while (true) {
+            System.out.print("Enter new capacity: ");
+            capacity = input().nextInt();
+            String str = String.valueOf(capacity);
+            if (regex.numberOfPeople(str) == true) {
+                break;
+            } else {
+                System.out.println("Capacity must be positive number");
+            }
+        }
+        String guestStay = "";
+        while (true) {
+            System.out.print("Enter new kind of guest stay: ");
+            guestStay = input().nextLine();
+            if (regex.rentOfType(guestStay)) {
+                break;
+            } else {
+                System.out.println("Kind of stay must be date month year format");
+            }
+        }
+        String roomStandard = "";
+        while (true) {
+            System.out.print("Enter new room standard: ");
+            roomStandard = input().nextLine();
+            if (regex.roomStandard(roomStandard) == true) {
+                break;
+            } else {
+                System.out.println("Room standard must follow NORMAL, VIP, LOW-YYYY");
+            }
+        }
+        int floor = 0;
+        while (true) {
+            System.out.print("Enter new floor: ");
+            floor = input().nextInt();
+            String str = String.valueOf(floor);
+            if (regex.numberOfFloor(str) == true) {
+                break;
+            } else {
+                System.out.println("Floor number must be positive");
+            }
+        }
         houses.put(new House(house, area, price, capacity, guestStay, roomStandard, floor), 0);
         new ReadAndWriteFileByByteStream<House>().writeFileByByteStreamUseMap(houses, FILE_PATH_HOUSE);
     }
@@ -91,19 +154,62 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
         if (rooms == null) {
             rooms = new LinkedHashMap<>();
         }
-        System.out.print("Enter new room name: ");
-        String house = input().nextLine();
-        System.out.print("Enter new area: ");
-        double area = input().nextDouble();
-        System.out.print("Enter new price: ");
-        double price = input().nextDouble();
-        System.out.print("Enter new capacity: ");
-        int capacity = input().nextInt();
-        System.out.print("Enter new kind of guest stay: ");
-        String guestStay = input().nextLine();
+        String room = "";
+        while (true) {
+            System.out.print("Enter new room name: ");
+            room = input().nextLine();
+            if (regex.regexNameService(room) == true) {
+                break;
+            } else {
+                System.out.println("Please enter in SVRO-YYYY format with Y is 4 numbers");
+            }
+        }
+        double area = 0;
+        while (true) {
+            System.out.print("Enter new area: ");
+            area = input().nextDouble();
+            String str = String.valueOf(area);
+            if (regex.area(str) == true) {
+                break;
+            } else {
+                System.out.println("Usage area must be bigger than 30");
+            }
+        }
+        double price = 0;
+        while (true) {
+            System.out.print("Enter new price: ");
+            price = input().nextDouble();
+            String str = String.valueOf(price);
+            if (regex.rentalFee(str) == true) {
+                break;
+            } else {
+                System.out.println("Price must be positive number");
+            }
+        }
+        int capacity = 0;
+        while (true) {
+            System.out.print("Enter new capacity: ");
+            capacity = input().nextInt();
+            String str = String.valueOf(capacity);
+            if (regex.numberOfPeople(str) == true) {
+                break;
+            } else {
+                System.out.println("Capacity must be positive number");
+            }
+        }
+        String guestStay = "";
+        while (true) {
+            System.out.print("Enter new kind of guest stay: ");
+            guestStay = input().nextLine();
+            if (regex.rentOfType(guestStay) == true) {
+                break;
+            } else {
+                System.out.println("Kind of stay must be date month year format");
+            }
+        }
         System.out.print("Enter new free service: ");
         String freeService = input().nextLine();
-        rooms.put(new Room(house, area, price, capacity, guestStay, freeService), 0);
+        rooms.put(new Room(room, area, price, capacity, guestStay, freeService), 0);
         new ReadAndWriteFileByByteStream<Room>().writeFileByByteStreamUseMap(rooms, FILE_PATH_ROOM);
     }
 
@@ -113,23 +219,92 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
         if (villas == null) {
             villas = new LinkedHashMap<>();
         }
-        System.out.print("Enter new villa name: ");
-        String house = input().nextLine();
-        System.out.print("Enter new area: ");
-        double area = input().nextDouble();
-        System.out.print("Enter new price: ");
-        double price = input().nextDouble();
-        System.out.print("Enter new capacity: ");
-        int capacity = input().nextInt();
-        System.out.print("Enter new kind of guest stay: ");
-        String guestStay = input().nextLine();
-        System.out.print("Enter new room standard: ");
-        String roomStandard = input().nextLine();
-        System.out.print("Enter new area of pool: ");
-        double poolArea = input().nextDouble();
-        System.out.print("Enter new floor: ");
-        int floor = input().nextInt();
-        villas.put(new Villa(house, area, price, capacity, guestStay, roomStandard, poolArea, floor), 0);
+        String villa = "";
+        while (true) {
+            System.out.print("Enter new villa name: ");
+            villa = input().nextLine();
+            if (regex.regexNameService(villa) == true) {
+                break;
+            } else {
+                System.out.println("Please enter in SVVL-YYYY format with Y is 4 numbers");
+            }
+        }
+        double area = 0;
+        while (true) {
+            System.out.print("Enter new area: ");
+            area = input().nextDouble();
+            String str = String.valueOf(area);
+            if (regex.area(str) == true) {
+                break;
+            } else {
+                System.out.println("Usage area must be bigger than 30");
+            }
+        }
+        double price = 0;
+        while (true) {
+            System.out.print("Enter new price: ");
+            price = input().nextDouble();
+            String str = String.valueOf(price);
+            if (regex.rentalFee(str) == true) {
+                break;
+            } else {
+                System.out.println("Price must be positive number");
+            }
+        }
+        int capacity = 0;
+        while (true) {
+            System.out.print("Enter new capacity: ");
+            capacity = input().nextInt();
+            String str = String.valueOf(capacity);
+            if (regex.numberOfPeople(str) == true) {
+                break;
+            } else {
+                System.out.println("Capacity must be positive number");
+            }
+        }
+        String guestStay = "";
+        while (true) {
+            System.out.print("Enter new kind of guest stay: ");
+            guestStay = input().nextLine();
+            if (regex.rentOfType(guestStay) == true) {
+                break;
+            } else {
+                System.out.println("Kind of stay must be date month year format");
+            }
+        }
+        String roomStandard = "";
+        while (true) {
+            System.out.print("Enter new villa standard: ");
+            roomStandard = input().nextLine();
+            if (regex.roomStandard(roomStandard) == true) {
+                break;
+            } else {
+                System.out.println("Room standard must follow NORMAL, VIP, LOW-YYYY");
+            }
+        }
+        double poolArea;
+        while (true) {
+            System.out.print("Enter new area of pool: ");
+            poolArea = input().nextDouble();
+            String str = String.valueOf(poolArea);
+            if (regex.area(str) == true) {
+                break;
+            } else {
+                System.out.println("Pool area must be larger than 30");
+            }
+        }
+        int floor = 0;
+        while (true) {
+            System.out.print("Enter new floor: ");
+            floor = input().nextInt();
+            String str = String.valueOf(floor);
+            if (regex.numberOfFloor(str) == true) {
+                break;
+            } else {
+                System.out.println("Floor number must be positive");
+            }
+        }
+        villas.put(new Villa(villa, area, price, capacity, guestStay, roomStandard, poolArea, floor), 0);
         new ReadAndWriteFileByByteStream<Villa>().writeFileByByteStreamUseMap(villas, FILE_PATH_VILLA);
     }
 

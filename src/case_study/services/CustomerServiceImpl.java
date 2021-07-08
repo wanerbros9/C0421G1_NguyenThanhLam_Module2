@@ -3,6 +3,7 @@ package case_study.services;
 import case_study.models.Customer;
 import case_study.models.Employee;
 import case_study.utils.ReadAndWriteFileByByteStream;
+import case_study.utils.Regex;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -16,15 +17,10 @@ public class CustomerServiceImpl implements CustomerService {
         Scanner scanner = new Scanner(System.in);
         return scanner;
     }
+
     public static final String FILE_PATH = "src/case_study/data/customer.csv";
     public static List<Customer> customers = new LinkedList<>();
-
-//    static {
-//        customers.add(new Customer("lam", "16/10/1998", "male", "CD2", "0825161098", "lam@gmail.com", "K1", "Vip", "Da Nang"));
-//        customers.add(new Customer("khoa", "31/10/1998", "male", "CD67", "0825161000", "khoa@gmail.com", "K2", "Platinum", "Hue"));
-//        customers.add(new Customer("tung", "5/12/1998", "female", "CD123", "0825161111", "tung@gmail.com", "K3", "Diamond", "Vinh"));
-//    }
-
+    Regex regex = new Regex();
 
     @Override
     public void add() {
@@ -32,8 +28,16 @@ public class CustomerServiceImpl implements CustomerService {
         String id = input().nextLine();
         System.out.print("Enter name: ");
         String name = input().nextLine();
-        System.out.print("Date of birth: ");
-        String birth = input().nextLine();
+        String birth = "";
+        while (true) {
+            System.out.print("Date of birth: ");
+            birth = input().nextLine();
+            if (regex.dayOfBirth(birth) == true) {
+                break;
+            } else {
+                System.out.println("Pleas enter in DD/MM/YYYY format");
+            }
+        }
         System.out.print("Enter gender: ");
         String sex = input().nextLine();
         System.out.print("Enter citizen ID: ");
@@ -50,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
         String address = input().nextLine();
         Customer customer = new Customer(id, name, birth, sex, citizenID, phone, email, customerID, customerType, address);
         customers.add(customer);
-        new ReadAndWriteFileByByteStream<Customer>().writeFileByByteStream(customers,FILE_PATH);
+        new ReadAndWriteFileByByteStream<Customer>().writeFileByByteStream(customers, FILE_PATH);
     }
 
     @Override
@@ -63,8 +67,16 @@ public class CustomerServiceImpl implements CustomerService {
                 System.out.print("Enter customer new name: ");
                 String newName = input().nextLine();
                 editCustomer.setName(newName);
-                System.out.print("Enter customer new birthday: ");
-                String newBirth = input().nextLine();
+                String newBirth = "";
+                while (true) {
+                    System.out.print("Enter customer new birthday: ");
+                    newBirth = input().nextLine();
+                    if (regex.dayOfBirth(newBirth) == true) {
+                        break;
+                    } else {
+                        System.out.println("Pleas enter in DD/MM/YYYY format");
+                    }
+                }
                 editCustomer.setBirth(newBirth);
                 System.out.print("Enter customer new gender: ");
                 String newSex = input().nextLine();
@@ -85,9 +97,9 @@ public class CustomerServiceImpl implements CustomerService {
                 break;
             }
         }
-        if (check){
+        if (check) {
             System.out.println("Complete update");
-            new ReadAndWriteFileByByteStream<Customer>().writeFileByByteStream(customers,FILE_PATH);
+            new ReadAndWriteFileByByteStream<Customer>().writeFileByByteStream(customers, FILE_PATH);
         }
     }
 
@@ -100,7 +112,7 @@ public class CustomerServiceImpl implements CustomerService {
     public void display() {
         customers = (List<Customer>) new ReadAndWriteFileByByteStream<Customer>().readFileByByteStream(FILE_PATH);
         for (Customer customer : customers) {
-                System.out.println(customer);
+            System.out.println(customer);
         }
     }
 }

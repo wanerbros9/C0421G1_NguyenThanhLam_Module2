@@ -1,9 +1,11 @@
 package case_study.services;
 
+import _15_exception_debug.thuc_hanh.ArrayExample;
 import case_study.models.Customer;
 import case_study.models.Employee;
 import case_study.models.Facility;
 import case_study.utils.ReadAndWriteFileByByteStream;
+import case_study.utils.Regex;
 
 import java.util.*;
 
@@ -17,6 +19,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private static final String FILE_PATH = "src/case_study/data/employee.csv";
     public static List<Employee> employees = new ArrayList<>();
+    Regex regex = new Regex();
 
 //    static {
 //        employees.add(new Employee("lam", "16/10/1998", "male", "CD1", "0825161098", "lam@gmail.com", "NV1", "Cao dang", "Le tan", 10000));
@@ -30,8 +33,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         String id = input().nextLine();
         System.out.print("Enter name: ");
         String name = input().nextLine();
-        System.out.print("Date of birth: ");
-        String birth = input().nextLine();
+        String birth = "";
+        while (true) {
+            System.out.print("Enter date of birth: ");
+            birth = input().nextLine();
+            if (!regex.dayOfBirth(birth) == true) {
+                break;
+            } else {
+                System.out.println("Pleas enter in DD/MM/YYYY format");
+            }
+        }
         System.out.print("Enter gender: ");
         String sex = input().nextLine();
         System.out.print("Enter citizen ID: ");
@@ -55,16 +66,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void edit() {
-        employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
         System.out.print("Enter employee id you want to change information: ");
         String id = input().nextLine();
+        employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
         for (Employee editEmployee : employees) {
             if (editEmployee.getId().equals(id)) {
                 System.out.print("Enter employee new name: ");
                 String newName = input().nextLine();
                 editEmployee.setName(newName);
-                System.out.print("Enter employee new birthday: ");
-                String newBirth = input().nextLine();
+                String newBirth = "";
+                while (true) {
+                    System.out.print("Enter employee new birthday: ");
+                    newBirth = input().nextLine();
+                    if (regex.dayOfBirth(newBirth) == true) {
+                        break;
+                    } else {
+                        System.out.println("Pleas enter in DD/MM/YYYY format");
+                    }
+                }
                 editEmployee.setBirth(newBirth);
                 System.out.print("Enter employee new gender: ");
                 String newSex = input().nextLine();
@@ -88,9 +107,9 @@ public class EmployeeServiceImpl implements EmployeeService {
                 break;
             }
         }
-        if (check){
+        if (check) {
             System.out.println("Update completed");
-            new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees,FILE_PATH);
+            new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees, FILE_PATH);
         }
     }
 
