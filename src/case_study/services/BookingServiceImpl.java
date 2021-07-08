@@ -2,6 +2,7 @@ package case_study.services;
 
 import case_study.models.Booking;
 import case_study.models.Customer;
+import case_study.models.Employee;
 import case_study.models.Facility;
 import case_study.utils.ReadAndWriteFileByByteStream;
 
@@ -15,7 +16,7 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
     }
 
     public static TreeSet<Booking> bookings = new TreeSet<>();
-    public static final String FILE_PATH_BOOKING = "src/case_study/data/customer.csv";
+    public static final String FILE_PATH_BOOKING = "src/case_study/data/booking.csv";
 //    public static final String FILE_PATH_CUSTOMER = "src/case_study/data/customer.csv";
 //    private static ReadAndWriteFileByByteStream<Booking> readAndWriteFileByByteStream = new ReadAndWriteFileByByteStream<>();
 
@@ -58,9 +59,10 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
 
     @Override
     public void display() {
-//        customers = (List<Customer>) new ReadAndWriteFileByByteStream<Booking>().readFileByByteStream(FILE_PATH_CUSTOMER);
-//        for (Customer customer : customers) {
-//            System.out.println("Customer id: " + customer.getCustomerID() + ", Customer name: " + customer.getName());
-//        }
+        bookings = (TreeSet<Booking>) readFileByByteStream(FILE_PATH_BOOKING);
+        if (bookings == null){
+        for (Booking booking : bookings ){
+            System.out.println(booking);
+        }
     }
 }

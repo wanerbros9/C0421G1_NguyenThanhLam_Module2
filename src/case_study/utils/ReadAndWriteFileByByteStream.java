@@ -29,6 +29,7 @@ public class ReadAndWriteFileByByteStream<K> {
         }
         return null;
     }
+
     public void writeFileByByteStream(List<K> list, String filePath) {
         File file = new File(filePath);
         FileOutputStream outputStream = null;
@@ -48,6 +49,7 @@ public class ReadAndWriteFileByByteStream<K> {
             }
         }
     }
+
     public void writeFileByByteStreamUseMap(Map<Facility, Integer> map, String filePath) {
         File file = new File(filePath);
         FileOutputStream outputStream = null;

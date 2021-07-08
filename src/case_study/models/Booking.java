@@ -1,6 +1,8 @@
 package case_study.models;
 
-public class Booking {
+import java.io.Serializable;
+
+public class Booking implements Comparable<Booking>, Serializable {
     private String bookingCode;
     private String startDate;
     private String endDate;
@@ -78,5 +80,10 @@ public class Booking {
                 ", serviceName='" + serviceName + '\'' +
                 ", serviceType='" + serviceType + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Booking o) {
+        return 1;
     }
 }
