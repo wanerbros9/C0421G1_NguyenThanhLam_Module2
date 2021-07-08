@@ -3,7 +3,7 @@ package case_study.models;
 import java.io.Serializable;
 
 public class Booking implements Comparable<Booking>, Serializable {
-    private String bookingCode;
+    private String bookingID;
     private String startDate;
     private String endDate;
     private String customerID;
@@ -13,8 +13,8 @@ public class Booking implements Comparable<Booking>, Serializable {
     public Booking() {
     }
 
-    public Booking(String bookingCode, String startDate, String endDate, String customerID, String serviceName, String serviceType) {
-        this.bookingCode = bookingCode;
+    public Booking(String bookingID, String startDate, String endDate, String customerID, String serviceName, String serviceType) {
+        this.bookingID = bookingID;
         this.startDate = startDate;
         this.endDate = endDate;
         this.customerID = customerID;
@@ -22,12 +22,12 @@ public class Booking implements Comparable<Booking>, Serializable {
         this.serviceType = serviceType;
     }
 
-    public String getBookingCode() {
-        return bookingCode;
+    public String getBookingID() {
+        return bookingID;
     }
 
-    public void setBookingCode(String bookingCode) {
-        this.bookingCode = bookingCode;
+    public void setBookingID(String bookingCode) {
+        this.bookingID = bookingCode;
     }
 
     public String getStartDate() {
@@ -73,7 +73,7 @@ public class Booking implements Comparable<Booking>, Serializable {
     @Override
     public String toString() {
         return "Booking{" +
-                "bookingCode='" + bookingCode + '\'' +
+                "bookingID='" + bookingID + '\'' +
                 ", startDate='" + startDate + '\'' +
                 ", endDate='" + endDate + '\'' +
                 ", customerID='" + customerID + '\'' +
@@ -84,6 +84,9 @@ public class Booking implements Comparable<Booking>, Serializable {
 
     @Override
     public int compareTo(Booking o) {
-        return 1;
+        if (this.getStartDate().equals(o.getStartDate())){
+            return this.getEndDate().compareTo(o.getEndDate());
+        }
+        return this.getStartDate().compareTo(o.getStartDate());
     }
 }

@@ -16,14 +16,17 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
     }
 
     public static TreeSet<Booking> bookings = new TreeSet<>();
+    public static List<Customer> customers = new LinkedList<>();
+    public static Map<Facility, Integer> facilities = new LinkedHashMap<>();
+
     public static final String FILE_PATH_BOOKING = "src/case_study/data/booking.csv";
 //    public static final String FILE_PATH_CUSTOMER = "src/case_study/data/customer.csv";
-//    private static ReadAndWriteFileByByteStream<Booking> readAndWriteFileByByteStream = new ReadAndWriteFileByByteStream<>();
+//    public static final String FILE_PATH_FACILITY = "src/case_study/data/facility.csv";
 
     @Override
     public void add() {
         bookings = (TreeSet<Booking>) new ReadAndWriteFileByByteStream<Booking>().readFileByByteStream(FILE_PATH_BOOKING);
-        if (bookings == null){
+        if (bookings == null) {
             bookings = new TreeSet<>();
         }
         System.out.println("Customer List: ");
@@ -44,7 +47,7 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
         String serviceType = input().nextLine();
         Booking booking = new Booking(bookingCode, startDate, endDate, customerId, serviceName, serviceType);
         bookings.add(booking);
-        new ReadAndWriteFileByByteStream<Booking>().writeFileByByteStreamUseTreeSet(bookings,FILE_PATH_BOOKING);
+        new ReadAndWriteFileByByteStream<Booking>().writeFileByByteStreamUseTreeSet(bookings, FILE_PATH_BOOKING);
     }
 
     @Override
@@ -60,9 +63,12 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
     @Override
     public void display() {
         bookings = (TreeSet<Booking>) readFileByByteStream(FILE_PATH_BOOKING);
-        if (bookings == null){
-        for (Booking booking : bookings ){
-            System.out.println(booking);
+        if (bookings == null) {
+            System.out.println("List is empty");
+        } else {
+            for (Booking booking : bookings) {
+                System.out.println(booking);
+            }
         }
     }
 }
