@@ -59,8 +59,18 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
         }
         System.out.print("Enter customer id: ");
         String customerId = input().nextLine();
-        System.out.print("Enter service name: ");
-        String serviceName = input().nextLine();
+
+        Map<Facility, Integer> facility = new FacilityServiceImp
+        String serviceName = "";
+        while (true) {
+            System.out.print("Enter service name: ");
+            serviceName = input().nextLine();
+            if (regex.regexNameService(serviceName)==true){
+                break;
+            }else {
+                System.out.println("Please enter in SVXX-YYYY with X is service and Y is 4 numbers");
+            }
+        }
         System.out.print("Enter service type: ");
         String serviceType = input().nextLine();
         Booking booking = new Booking(bookingCode, startDate, endDate, customerId, serviceName, serviceType);
@@ -88,5 +98,10 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
                 System.out.println(booking);
             }
         }
+    }
+
+    @Override
+    public Set<Booking> getAll() {
+        return bookings;
     }
 }
