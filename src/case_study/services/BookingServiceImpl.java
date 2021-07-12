@@ -60,7 +60,7 @@ public class BookingServiceImpl extends ReadAndWriteFileByByteStream implements 
         System.out.print("Enter customer id: ");
         String customerId = input().nextLine();
 
-        Map<Facility, Integer> facility = new FacilityServiceImp
+//        Map<Facility, Integer> facility = new FacilityServiceImpl();
         String serviceName = "";
         while (true) {
             System.out.print("Enter service name: ");
