@@ -3,7 +3,7 @@ package case_study.models;
 import java.io.Serializable;
 
 public abstract class Person implements Serializable {
-    private String id;
+    private int id;
     private String name;
     private String birth;
     private String sex;
@@ -14,7 +14,7 @@ public abstract class Person implements Serializable {
     public Person() {
     }
 
-    public Person(String id, String name, String birth, String sex, String citizenID, String phone, String email) {
+    public Person(int id, String name, String birth, String sex, String citizenID, String phone, String email) {
         this.id = id;
         this.name = name;
         this.birth = birth;
@@ -24,11 +24,11 @@ public abstract class Person implements Serializable {
         this.email = email;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

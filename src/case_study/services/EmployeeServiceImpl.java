@@ -29,8 +29,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void add() {
-        System.out.print("Enter id: ");
-        String id = input().nextLine();
+        employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
+        int id;
+        if (employees == null) {
+            employees = new ArrayList<>();
+            id = 1;
+        } else {
+            id = employees.get(employees.size() - 1).getId() + 1;
+        }
         System.out.print("Enter name: ");
         String name = input().nextLine();
         String birth = "";
@@ -51,60 +57,62 @@ public class EmployeeServiceImpl implements EmployeeService {
         String phone = input().nextLine();
         System.out.print("Enter email: ");
         String email = input().nextLine();
-        System.out.print("Enter employee ID: ");
-        String employeeID = input().nextLine();
         System.out.print("Enter your level: ");
         String level = input().nextLine();
         System.out.print("Enter position: ");
         String position = input().nextLine();
         System.out.print("Enter salary: ");
         double salary = input().nextDouble();
-        Employee employee = new Employee(id, name, birth, sex, citizenID, phone, email, employeeID, level, position, salary);
+        Employee employee = new Employee(id, name, birth, sex, citizenID, phone, email, level, position, salary);
         employees.add(employee);
         new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees, FILE_PATH);
     }
 
     @Override
     public void edit() {
-        System.out.print("Enter employee id you want to change information: ");
-        String id = input().nextLine();
-        employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
-        for (Employee editEmployee : employees) {
-            if (editEmployee.getId().equals(id)) {
-                System.out.print("Enter employee new name: ");
-                String newName = input().nextLine();
-                editEmployee.setName(newName);
-                String newBirth = "";
-                while (true) {
-                    System.out.print("Enter employee new birthday: ");
-                    newBirth = input().nextLine();
-                    if (regex.dayOfBirth(newBirth) == true) {
-                        break;
-                    } else {
-                        System.out.println("Pleas enter in DD/MM/YYYY format");
+        if (employees == null) {
+            System.out.println("Employee list is empty");
+        } else {
+            System.out.print("Enter employee id you want to change information: ");
+            int id = input().nextInt();
+            employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
+            for (Employee editEmployee : employees) {
+                if (id == editEmployee.getId()) {
+                    System.out.print("Enter employee new name: ");
+                    String newName = input().nextLine();
+                    editEmployee.setName(newName);
+                    String newBirth = "";
+                    while (true) {
+                        System.out.print("Enter employee new birthday: ");
+                        newBirth = input().nextLine();
+                        if (regex.dayOfBirth(newBirth) == true) {
+                            break;
+                        } else {
+                            System.out.println("Pleas enter in DD/MM/YYYY format");
+                        }
                     }
+                    editEmployee.setBirth(newBirth);
+                    System.out.print("Enter employee new gender: ");
+                    String newSex = input().nextLine();
+                    editEmployee.setSex(newSex);
+                    System.out.print("Enter employee new phone number: ");
+                    String newPhone = input().nextLine();
+                    editEmployee.setPhone(newPhone);
+                    System.out.print("Enter employee new email: ");
+                    String newEmail = input().nextLine();
+                    editEmployee.setEmail(newEmail);
+                    System.out.print("Enter employee new level: ");
+                    String newLevel = input().nextLine();
+                    editEmployee.setLevel(newLevel);
+                    System.out.print("Enter employee new position: ");
+                    String newPosition = input().nextLine();
+                    editEmployee.setPosition(newPosition);
+                    System.out.print("Enter employee new salary: ");
+                    double newSalary = input().nextDouble();
+                    editEmployee.setSalary(newSalary);
+                    check = true;
+                    break;
                 }
-                editEmployee.setBirth(newBirth);
-                System.out.print("Enter employee new gender: ");
-                String newSex = input().nextLine();
-                editEmployee.setSex(newSex);
-                System.out.print("Enter employee new phone number: ");
-                String newPhone = input().nextLine();
-                editEmployee.setPhone(newPhone);
-                System.out.print("Enter employee new email: ");
-                String newEmail = input().nextLine();
-                editEmployee.setEmail(newEmail);
-                System.out.print("Enter employee new level: ");
-                String newLevel = input().nextLine();
-                editEmployee.setLevel(newLevel);
-                System.out.print("Enter employee new position: ");
-                String newPosition = input().nextLine();
-                editEmployee.setPosition(newPosition);
-                System.out.print("Enter employee new salary: ");
-                double newSalary = input().nextDouble();
-                editEmployee.setSalary(newSalary);
-                check = true;
-                break;
             }
         }
         if (check) {

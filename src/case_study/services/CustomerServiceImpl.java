@@ -24,13 +24,19 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void add() {
-        System.out.print("Enter id: ");
-        String id = input().nextLine();
+        customers = (List<Customer>) new ReadAndWriteFileByByteStream<Customer>().readFileByByteStream(FILE_PATH);
+        int id;
+        if (customers == null) {
+            customers = new LinkedList<>();
+            id = 1;
+        } else {
+            id = customers.get(customers.size() - 1).getId() + 1;
+        }
         System.out.print("Enter name: ");
         String name = input().nextLine();
         String birth = "";
         while (true) {
-            System.out.print("Date of birth: ");
+            System.out.print("Enter date of birth: ");
             birth = input().nextLine();
             if (regex.dayOfBirth(birth) == true) {
                 break;
@@ -59,42 +65,46 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void edit() {
-        customers = (List<Customer>) new ReadAndWriteFileByByteStream<Customer>().readFileByByteStream(FILE_PATH);
-        System.out.print("Enter customer id you want to change information: ");
-        String id = input().nextLine();
-        for (Customer editCustomer : customers) {
-            if (editCustomer.getId().equals(id)) {
-                System.out.print("Enter customer new name: ");
-                String newName = input().nextLine();
-                editCustomer.setName(newName);
-                String newBirth = "";
-                while (true) {
-                    System.out.print("Enter customer new birthday: ");
-                    newBirth = input().nextLine();
-                    if (regex.dayOfBirth(newBirth) == true) {
-                        break;
-                    } else {
-                        System.out.println("Pleas enter in DD/MM/YYYY format");
+        if (customers == null) {
+            System.out.println("Customer list is empty");
+        } else {
+            customers = (List<Customer>) new ReadAndWriteFileByByteStream<Customer>().readFileByByteStream(FILE_PATH);
+            System.out.print("Enter customer's id you want to change information: ");
+            int id = input().nextInt();
+            for (Customer editCustomer : customers) {
+                if (id == editCustomer.getId()) {
+                    System.out.print("Enter customer new name: ");
+                    String newName = input().nextLine();
+                    editCustomer.setName(newName);
+                    String newBirth = "";
+                    while (true) {
+                        System.out.print("Enter customer new birthday: ");
+                        newBirth = input().nextLine();
+                        if (regex.dayOfBirth(newBirth) == true) {
+                            break;
+                        } else {
+                            System.out.println("Pleas enter in DD/MM/YYYY format");
+                        }
                     }
+                    editCustomer.setBirth(newBirth);
+                    System.out.print("Enter customer new gender: ");
+                    String newSex = input().nextLine();
+                    editCustomer.setSex(newSex);
+                    System.out.print("Enter customer new phone number: ");
+                    String newPhone = input().nextLine();
+                    editCustomer.setPhone(newPhone);
+                    System.out.print("Enter customer new email: ");
+                    String newEmail = input().nextLine();
+                    editCustomer.setEmail(newEmail);
+                    System.out.print("Enter customer new type: ");
+                    String newCustomerType = input().nextLine();
+                    editCustomer.setCustomerType(newCustomerType);
+                    System.out.print("Enter customer new address: ");
+                    String newAddress = input().nextLine();
+                    editCustomer.setAddress(newAddress);
+                    check = true;
+                    break;
                 }
-                editCustomer.setBirth(newBirth);
-                System.out.print("Enter customer new gender: ");
-                String newSex = input().nextLine();
-                editCustomer.setSex(newSex);
-                System.out.print("Enter customer new phone number: ");
-                String newPhone = input().nextLine();
-                editCustomer.setPhone(newPhone);
-                System.out.print("Enter customer new email: ");
-                String newEmail = input().nextLine();
-                editCustomer.setEmail(newEmail);
-                System.out.print("Enter customer new type: ");
-                String newCustomerType = input().nextLine();
-                editCustomer.setCustomerType(newCustomerType);
-                System.out.print("Enter customer new address: ");
-                String newAddress = input().nextLine();
-                editCustomer.setAddress(newAddress);
-                check = true;
-                break;
             }
         }
         if (check) {
