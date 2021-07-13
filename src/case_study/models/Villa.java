@@ -2,13 +2,13 @@ package case_study.models;
 
 public class Villa extends Facility {
     private String roomStandard;
-    private double poolArea;
+    private int poolArea;
     private int floor;
 
     public Villa() {
     }
 
-    public Villa(String name, double area, double price, int capacity, String guestStay, String roomStandard, double poolArea, int floor) {
+    public Villa(String name, int area, double price, int capacity, String guestStay, String roomStandard, int poolArea, int floor) {
         super(name, area, price, capacity, guestStay);
         this.roomStandard = roomStandard;
         this.poolArea = poolArea;
@@ -27,7 +27,7 @@ public class Villa extends Facility {
         return poolArea;
     }
 
-    public void setPoolArea(double poolArea) {
+    public void setPoolArea(int poolArea) {
         this.poolArea = poolArea;
     }
 

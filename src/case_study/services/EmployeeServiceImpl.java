@@ -37,32 +37,97 @@ public class EmployeeServiceImpl implements EmployeeService {
         } else {
             id = employees.get(employees.size() - 1).getId() + 1;
         }
-        System.out.print("Enter name: ");
-        String name = input().nextLine();
+        String name = "";
+        while (true) {
+            System.out.print("Enter name: ");
+            name = input().nextLine();
+            if (regex.whiteSpace(name) == true) {
+                break;
+            } else {
+                System.out.println("You must enter name");
+            }
+        }
         String birth = "";
         while (true) {
             System.out.print("Enter date of birth: ");
             birth = input().nextLine();
-            if (!regex.dayOfBirth(birth) == true) {
+            if (regex.dayOfBirth(birth) == true) {
                 break;
             } else {
                 System.out.println("Pleas enter in DD/MM/YYYY format");
             }
         }
-        System.out.print("Enter gender: ");
-        String sex = input().nextLine();
-        System.out.print("Enter citizen ID: ");
-        String citizenID = input().nextLine();
-        System.out.print("Enter phone number: ");
-        String phone = input().nextLine();
-        System.out.print("Enter email: ");
-        String email = input().nextLine();
-        System.out.print("Enter your level: ");
-        String level = input().nextLine();
-        System.out.print("Enter position: ");
-        String position = input().nextLine();
-        System.out.print("Enter salary: ");
-        double salary = input().nextDouble();
+        String sex = "";
+        while (true) {
+            System.out.print("Enter gender: ");
+            sex = input().nextLine();
+            if (regex.whiteSpace(sex) == true) {
+                break;
+            } else {
+                System.out.println("You must enter gender");
+            }
+        }
+        String citizenID = "";
+        while (true) {
+            System.out.print("Enter citizen ID: ");
+            citizenID = input().nextLine();
+            if (regex.whiteSpace(citizenID) == true) {
+                break;
+            } else {
+                System.out.println("You must enter citizen ID");
+            }
+        }
+        String phone = "";
+        while (true) {
+            System.out.print("Enter phone number: ");
+            phone = input().nextLine();
+            if (regex.whiteSpace(phone) == true) {
+                break;
+            } else {
+                System.out.println("You must enter phone number");
+            }
+        }
+        String email = "";
+        while (true) {
+            System.out.print("Enter email: ");
+            email = input().nextLine();
+            if (regex.whiteSpace(email) == true) {
+                break;
+            } else {
+                System.out.println("You must enter email");
+            }
+        }
+        String level = "";
+        while (true) {
+            System.out.print("Enter your level: ");
+            level = input().nextLine();
+            if (regex.whiteSpace(level) == true) {
+                break;
+            } else {
+                System.out.println("You must enter level");
+            }
+        }
+        String position = "";
+        while (true) {
+            System.out.print("Enter position: ");
+            position = input().nextLine();
+            if (regex.whiteSpace(position) == true) {
+                break;
+            } else {
+                System.out.println("You must enter position");
+            }
+        }
+        double salary = 0;
+        while (true) {
+            System.out.print("Enter salary: ");
+            salary = input().nextDouble();
+            String str = String.valueOf(salary);
+            if (regex.whiteSpace(str) == true) {
+                break;
+            } else {
+                System.out.println("You must enter salary");
+            }
+        }
         Employee employee = new Employee(id, name, birth, sex, citizenID, phone, email, level, position, salary);
         employees.add(employee);
         new ReadAndWriteFileByByteStream<Employee>().writeFileByByteStream(employees, FILE_PATH);
@@ -78,8 +143,16 @@ public class EmployeeServiceImpl implements EmployeeService {
             employees = (List<Employee>) new ReadAndWriteFileByByteStream<Employee>().readFileByByteStream(FILE_PATH);
             for (Employee editEmployee : employees) {
                 if (id == editEmployee.getId()) {
-                    System.out.print("Enter employee new name: ");
-                    String newName = input().nextLine();
+                    String newName = "";
+                    while (true) {
+                        System.out.print("Enter employee new name: ");
+                        newName = input().nextLine();
+                        if (regex.whiteSpace(newName)==true){
+                            break;
+                        }else {
+                            System.out.println("You must enter new name");
+                        }
+                    }
                     editEmployee.setName(newName);
                     String newBirth = "";
                     while (true) {
@@ -92,23 +165,72 @@ public class EmployeeServiceImpl implements EmployeeService {
                         }
                     }
                     editEmployee.setBirth(newBirth);
-                    System.out.print("Enter employee new gender: ");
-                    String newSex = input().nextLine();
+                    String newSex = "";
+                    while (true) {
+                        System.out.print("Enter employee new gender: ");
+                        newSex = input().nextLine();
+                        if (regex.whiteSpace(newSex) == true) {
+                            break;
+                        } else {
+                            System.out.println("You must enter new gender");
+                        }
+                    }
                     editEmployee.setSex(newSex);
-                    System.out.print("Enter employee new phone number: ");
-                    String newPhone = input().nextLine();
+                    String newPhone = "";
+                    while (true) {
+                        System.out.print("Enter employee new phone number: ");
+                        newPhone = input().nextLine();
+                        if (regex.whiteSpace(newPhone) == true) {
+                            break;
+                        } else {
+                            System.out.println("You must enter new phone number");
+                        }
+                    }
                     editEmployee.setPhone(newPhone);
-                    System.out.print("Enter employee new email: ");
-                    String newEmail = input().nextLine();
+                    String newEmail = "";
+                    while (true) {
+                        System.out.print("Enter employee new email: ");
+                        newEmail = input().nextLine();
+                        if (regex.whiteSpace(newEmail) == true) {
+                            break;
+                        } else {
+                            System.out.println("You must enter new email");
+                        }
+                    }
                     editEmployee.setEmail(newEmail);
-                    System.out.print("Enter employee new level: ");
-                    String newLevel = input().nextLine();
+                    String newLevel = "";
+                    while (true) {
+                        System.out.print("Enter employee new level: ");
+                        newLevel = input().nextLine();
+                        if (regex.whiteSpace(newLevel) == true) {
+                            break;
+                        } else {
+                            System.out.println("You must enter new level");
+                        }
+                    }
                     editEmployee.setLevel(newLevel);
-                    System.out.print("Enter employee new position: ");
-                    String newPosition = input().nextLine();
+                    String newPosition = "";
+                    while (true) {
+                        System.out.print("Enter employee new position: ");
+                        newPosition = input().nextLine();
+                        if (regex.whiteSpace(newPosition) == true) {
+                            break;
+                        } else {
+                            System.out.println("You must enter new position");
+                        }
+                    }
                     editEmployee.setPosition(newPosition);
-                    System.out.print("Enter employee new salary: ");
-                    double newSalary = input().nextDouble();
+                    double newSalary;
+                    while (true) {
+                        System.out.print("Enter employee new salary: ");
+                        newSalary = input().nextDouble();
+                        String str = String.valueOf(newSalary);
+                        if (regex.whiteSpace(str) == true) {
+                            break;
+                        } else {
+                            System.out.println("You must enter new salary");
+                        }
+                    }
                     editEmployee.setSalary(newSalary);
                     check = true;
                     break;

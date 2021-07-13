@@ -9,7 +9,7 @@ public class House extends Facility implements Serializable {
     public House() {
     }
 
-    public House(String name, double area, double price, int capacity, String guestStay, String roomStandard, int floor) {
+    public House(String name, int area, double price, int capacity, String guestStay, String roomStandard, int floor) {
         super(name, area, price, capacity, guestStay);
         this.roomStandard = roomStandard;
         this.floor = floor;

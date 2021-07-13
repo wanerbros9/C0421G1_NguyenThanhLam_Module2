@@ -164,10 +164,10 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
                 System.out.println("Please enter in SVRO-YYYY format with Y is 4 numbers");
             }
         }
-        double area = 0;
+        int area = 0;
         while (true) {
             System.out.print("Enter new area: ");
-            area = input().nextDouble();
+            area = input().nextInt();
             String str = String.valueOf(area);
             if (regex.area(str) == true) {
                 break;
@@ -178,7 +178,7 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
         double price = 0;
         while (true) {
             System.out.print("Enter new price: ");
-            price = input().nextDouble();
+            price = input().nextInt();
             String str = String.valueOf(price);
             if (regex.rentalFee(str) == true) {
                 break;
@@ -229,10 +229,10 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
                 System.out.println("Please enter in SVVL-YYYY format with Y is 4 numbers");
             }
         }
-        double area = 0;
+        int area = 0;
         while (true) {
             System.out.print("Enter new area: ");
-            area = input().nextDouble();
+            area = input().nextInt();
             String str = String.valueOf(area);
             if (regex.area(str) == true) {
                 break;
@@ -282,10 +282,10 @@ public class FacilityServiceImpl extends ReadAndWriteFileByByteStream implements
                 System.out.println("Room standard must follow NORMAL, VIP, LOW-YYYY");
             }
         }
-        double poolArea;
+        int poolArea;
         while (true) {
             System.out.print("Enter new area of pool: ");
-            poolArea = input().nextDouble();
+            poolArea = input().nextInt();
             String str = String.valueOf(poolArea);
             if (regex.area(str) == true) {
                 break;
