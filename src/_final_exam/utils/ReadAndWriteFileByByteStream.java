@@ -3,7 +3,7 @@ package _final_exam.utils;
 import java.io.*;
 import java.util.List;
 
-public class ReadAndWriteFileByByteStream1<K> {
+public class ReadAndWriteFileByByteStream<K> {
     public Object readFileByByteStream(String filePath){
         //Khai báo đối tượng FileInputStream và ObjectInputStream trỏ tới null
         FileInputStream FIn = null;

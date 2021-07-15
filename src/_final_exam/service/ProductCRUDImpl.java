@@ -1,18 +1,17 @@
 package _final_exam.service;
 
+import _final_exam.controller.ProductController;
 import _final_exam.model.ExportedProduct;
 import _final_exam.model.ImportedProduct;
 import _final_exam.model.Product;
-import _final_exam.utils.ReadAndWriteFileByByteStream1;
+import _final_exam.utils.ReadAndWriteFileByByteStream;
 import _final_exam.utils.Regex;
-import case_study.utils.ReadAndWriteFileByByteStream;
-import javafx.beans.property.ListProperty;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ProductCRUDImpl extends  ReadAndWriteFileByByteStream implements ProductCRUD {
+public class ProductCRUDImpl extends case_study.utils.ReadAndWriteFileByByteStream implements ProductCRUD {
     private static boolean check = true;
 
     public static Scanner input() {
@@ -22,13 +21,35 @@ public class ProductCRUDImpl extends  ReadAndWriteFileByByteStream implements Pr
 
     private static final String FILE_PATH = "src/_final_exam/data/products.csv";
     public static List<Product> products = new ArrayList<>();
+
     public static List<ImportedProduct> importedProducts = new ArrayList<>();
     public static List<ExportedProduct> exportedProducts = new ArrayList<>();
     Regex regex = new Regex();
 
     @Override
+    public void add() {
+        System.out.println("1. Imported Product");
+        System.out.println("2. Exported Product");
+        System.out.print("Enter your choice: ");
+        int choice = choiceNumber();
+        switch (choice){
+            case 1:
+                addImport();
+                break;
+            case 2:
+                addExport();
+                break;
+            case 3:
+                new ProductController().displayMainMenu();
+                break;
+            default:
+                System.out.println("Please enter correct number");
+        }
+    }
+
+    @Override
     public void addImport() {
-        importedProducts = (List<ImportedProduct>) new ReadAndWriteFileByByteStream1<Product>().readFileByByteStream(FILE_PATH);
+        importedProducts = (List<ImportedProduct>) new ReadAndWriteFileByByteStream<Product>().readFileByByteStream(FILE_PATH);
         int id;
         if (importedProducts == null) {
             importedProducts = new ArrayList<>();
@@ -120,14 +141,14 @@ public class ProductCRUDImpl extends  ReadAndWriteFileByByteStream implements Pr
                 System.out.println("You must enter tax");
             }
         }
-        ImportedProduct importedProduct = new ImportedProduct(id, productID, productName, price, amount, companyProduct,importedPrice,importedCity,importedTax);
+        ImportedProduct importedProduct = new ImportedProduct(id, productID, productName, price, amount, companyProduct, importedPrice, importedCity, importedTax);
         importedProducts.add(importedProduct);
-        new ReadAndWriteFileByByteStream<ImportedProduct>().writeFileByByteStream(importedProducts, FILE_PATH);
+        new case_study.utils.ReadAndWriteFileByByteStream().writeFileByByteStream(importedProducts, FILE_PATH);
     }
 
     @Override
     public void addExport() {
-        exportedProducts = (List<ExportedProduct>) new ReadAndWriteFileByByteStream1<Product>().readFileByByteStream(FILE_PATH);
+        exportedProducts = (List<ExportedProduct>) new ReadAndWriteFileByByteStream<Product>().readFileByByteStream(FILE_PATH);
         int id;
         if (exportedProducts == null) {
             exportedProducts = new ArrayList<>();
@@ -210,7 +231,7 @@ public class ProductCRUDImpl extends  ReadAndWriteFileByByteStream implements Pr
         }
         ExportedProduct exportedProduct = new ExportedProduct(id, productID, productName, price, amount, companyProduct, exportedPrice, exportedCountry);
         exportedProducts.add(exportedProduct);
-        new ReadAndWriteFileByByteStream1<ExportedProduct>().writeFileByByteStream(exportedProducts,FILE_PATH);
+        new ReadAndWriteFileByByteStream<ExportedProduct>().writeFileByByteStream(exportedProducts, FILE_PATH);
     }
 
     @Override
@@ -221,7 +242,7 @@ public class ProductCRUDImpl extends  ReadAndWriteFileByByteStream implements Pr
     public void delete() {
         System.out.println("Enter product id you want to delete: ");
         String productID = input().nextLine();
-        products = (List<Product>) new ReadAndWriteFileByByteStream1<Product>().readFileByByteStream(FILE_PATH);
+        products = (List<Product>) new ReadAndWriteFileByByteStream<Product>().readFileByByteStream(FILE_PATH);
         boolean isExist = true;
         for (Product product : products) {
             if (productID.equals(product.getProductID())) {
@@ -250,7 +271,7 @@ public class ProductCRUDImpl extends  ReadAndWriteFileByByteStream implements Pr
 
     @Override
     public void display() {
-        products = (List<Product>) new ReadAndWriteFileByByteStream1<Product>().readFileByByteStream(FILE_PATH);
+        products = (List<Product>) new ReadAndWriteFileByByteStream<Product>().readFileByByteStream(FILE_PATH);
         for (Product product : products) {
             System.out.println(product);
         }

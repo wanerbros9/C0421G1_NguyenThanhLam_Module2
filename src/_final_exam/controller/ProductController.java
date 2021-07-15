@@ -14,31 +14,27 @@ public class ProductController {
     public void displayMainMenu() {
         while (true) {
             System.out.println("-----Product Management-----");
-            System.out.println("1. Add new imported product");
-            System.out.println("2. Add new exported product");
-            System.out.println("3. Delete product");
-            System.out.println("4. Display product list");
-            System.out.println("5. Search product");
-            System.out.println("6. Exit");
+            System.out.println("1. Add new product");
+            System.out.println("2. Delete product");
+            System.out.println("3. Display product list");
+            System.out.println("4. Search product");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             int choice = choiceNumber();
             switch (choice) {
                 case 1:
-                    new ProductCRUDImpl().addImport();
+                    new ProductCRUDImpl().add();
                     break;
                 case 2:
-                    new ProductCRUDImpl().addExport();
-                    break;
-                case 3:
                     new ProductCRUDImpl().delete();
                     break;
-                case 4:
+                case 3:
                     new ProductCRUDImpl().display();
                     break;
-                case 5:
+                case 4:
                     new ProductCRUDImpl().search();
                     break;
-                case 6:
+                case 5:
                     System.exit(1);
                     break;
                 default:
